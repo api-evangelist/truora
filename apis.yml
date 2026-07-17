@@ -1,0 +1,138 @@
+aid: truora
+url: https://raw.githubusercontent.com/api-evangelist/truora/refs/heads/main/apis.yml
+name: Truora
+kind: company
+description: Truora is a Latin American identity verification and fraud-prevention
+  platform. Its REST APIs run background checks on people, vehicles, and companies
+  across LatAm, validate documents/faces/email/phone for KYC, and orchestrate web
+  and WhatsApp conversational onboarding flows. All requests authenticate with a
+  Truora-API-Key header.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Identity Verification
+- KYC
+- Background Checks
+- Fraud Prevention
+- LatAm
+- WhatsApp
+created: '2026-07-17'
+modified: '2026-07-17'
+specificationVersion: '0.19'
+apis:
+- aid: truora:truora-checks-api
+  name: Truora Checks API
+  tags:
+  - Background Checks
+  - KYC
+  - Fraud Prevention
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.truora.com/checks/create/
+  baseURL: https://api.checks.truora.com
+  properties:
+  - url: https://dev.truora.com/checks/create/
+    type: Documentation
+  - url: https://dev.truora.com/docs/
+    type: APIReference
+  - url: openapi/truora-openapi.yml
+    type: OpenAPI
+  - url: collections/truora.postman_collection.json
+    type: Postman
+  description: Runs full background checks on persons, vehicles, and companies
+    across LatAm databases (CO, CL, MX, PE, BR, SV, CR), returning identity,
+    criminal, international, and professional-background variables plus a risk
+    score, PDF summary, attachments, and continuous monitoring.
+- aid: truora:truora-validators-api
+  name: Truora Validators API
+  tags:
+  - Document Validation
+  - Facial Recognition
+  - KYC
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.truora.com/validators/document_validation_api/
+  baseURL: https://api.validations.truora.com
+  properties:
+  - url: https://dev.truora.com/validators/document_validation_api/
+    type: Documentation
+  - url: https://dev.truora.com/docs/
+    type: APIReference
+  - url: openapi/truora-openapi.yml
+    type: OpenAPI
+  - url: collections/truora.postman_collection.json
+    type: Postman
+  description: Creates KYC validations - document verification, facial
+    recognition and re-validation, email, phone, and electronic signature -
+    returning signed upload URLs for subject media and extracted OCR/match
+    details on retrieval.
+- aid: truora:truora-digital-identity-api
+  name: Truora Digital Identity API
+  tags:
+  - Digital Identity
+  - WhatsApp
+  - Onboarding
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.truora.com/digital-identity/get_results/
+  baseURL: https://api.identity.truora.com
+  properties:
+  - url: https://dev.truora.com/digital-identity/create_process_link/
+    type: Documentation
+  - url: https://dev.truora.com/docs/
+    type: APIReference
+  - url: openapi/truora-openapi.yml
+    type: OpenAPI
+  - url: collections/truora.postman_collection.json
+    type: Postman
+  description: Retrieves the state and consolidated results of Digital Identity
+    verification processes launched through hosted web flows or WhatsApp
+    conversational onboarding, combining document, face, and liveness checks
+    into a single scored decision.
+- aid: truora:truora-account-api
+  name: Truora Account API
+  tags:
+  - Authentication
+  - API Keys
+  - Tokens
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.truora.com/guides/web_integration_token/
+  baseURL: https://api.account.truora.com
+  properties:
+  - url: https://dev.truora.com/validators/authentication/
+    type: Documentation
+  - url: https://dev.truora.com/docs/
+    type: APIReference
+  - url: openapi/truora-openapi.yml
+    type: OpenAPI
+  - url: collections/truora.postman_collection.json
+    type: Postman
+  description: Issues and manages Truora API keys - backend JWTs for
+    server-to-server calls and short-lived web integration tokens (key_type=web)
+    used to launch Digital Identity processes in the browser or WhatsApp flows.
+common:
+- type: AgenticAccess
+  url: agentic-access/truora-agentic-access.yml
+- type: TrustCenter
+  url: security/truora-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/truora-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/truora-domain-security.yml
+- type: Authentication
+  url: authentication/truora-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/truora
+- type: LinkedIn
+  url: https://www.linkedin.com/company/truora
+- type: Website
+  url: https://www.truora.com/
+- type: Documentation
+  url: https://dev.truora.com/
+- type: Plans
+  url: plans/truora-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/truora-rate-limits.yml
+- type: FinOps
+  url: finops/truora-finops.yml
+- type: Blog
+  url: https://www.truora.com/en/blog
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

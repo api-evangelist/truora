@@ -1,0 +1,84 @@
+aid: truora
+name: Truora
+review:
+  question: Does Truora expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-17'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Truora's documented surface is entirely
+    HTTPS REST across four hosts (api.checks, api.validations, api.identity,
+    api.account). Asynchronous results are delivered by polling GET endpoints
+    or by HTTP webhooks (POST /v1/webhooks/{webhook_type}) - not by any
+    streaming, SSE, or WebSocket transport. There is no message/event-streaming
+    surface to model.
+findings:
+  summary: |
+    Truora does not publish a documented public WebSocket API. All products -
+    the Checks API (background checks), the Validators API (KYC validations),
+    the Digital Identity API (web + WhatsApp processes), and the Account API
+    (API keys) - are request/response HTTPS REST. Long-running work (checks,
+    validations, identity processes) completes asynchronously and is surfaced
+    either by polling a GET endpoint with the returned id or via HTTP webhook
+    callbacks. No realtime, bidirectional, or streaming ws:// / wss:// endpoint
+    is documented anywhere in the developer docs as of the review date.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.checks.truora.com
+      documented: true
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.validations.truora.com
+      documented: true
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.identity.truora.com
+      documented: true
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.account.truora.com
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: HTTP callbacks via POST /v1/webhooks/{webhook_type} deliver check updates. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the Truora API reference or any product guide as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://api.checks.truora.com/v1/checks
+    - GET    https://api.checks.truora.com/v1/checks
+    - GET    https://api.checks.truora.com/v1/checks/{check_id}
+    - GET    https://api.checks.truora.com/v1/checks/{check_id}/pdf
+    - GET    https://api.checks.truora.com/v1/checks/{check_id}/variables
+    - GET    https://api.checks.truora.com/v1/checks/{check_id}/attachments
+    - POST   https://api.checks.truora.com/v1/continuous-check
+    - POST   https://api.validations.truora.com/v1/validations
+    - GET    https://api.validations.truora.com/v1/validations/{validation_id}
+    - GET    https://api.identity.truora.com/v1/processes/{process_id}
+    - GET    https://api.identity.truora.com/v1/processes/{process_id}/result
+    - POST   https://api.account.truora.com/v1/api-keys
+sources:
+  - url: https://dev.truora.com/docs/
+    type: APIReference
+    note: Full API reference; all documented endpoints are HTTPS REST across four hosts.
+  - url: https://dev.truora.com/guides/creating_a_background_check/
+    type: Documentation
+    note: Background checks use POST /v1/checks then poll GET /v1/checks/{check_id}.
+  - url: https://dev.truora.com/validators/document_validation_api/
+    type: Documentation
+    note: Validators use POST/GET on api.validations.truora.com; no WebSocket.
+  - url: https://dev.truora.com/digital-identity/get_results/
+    type: Documentation
+    note: Digital Identity results retrieved via GET on api.identity.truora.com/v1/processes.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: false
+  reason: |
+    No WebSocket protocol surface exists, and no streaming/SSE message surface
+    was found either - asynchronous delivery is polling plus HTTP webhooks.
+    No AsyncAPI document was authored and no AsyncAPI pointer was added to
+    apis.yml.

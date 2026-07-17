@@ -1,0 +1,243 @@
+{
+  "info": {
+    "name": "Truora API",
+    "description": "Modeled from https://dev.truora.com/docs/ (2026-07-17). Covers Truora's four production REST hosts: Checks (background checks), Validators (KYC), Digital Identity (web + WhatsApp processes), and Account (API keys). Every request authenticates with a Truora-API-Key header.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "Truora-API-Key", "type": "string" },
+      { "key": "value", "value": "{{truora_api_key}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "checks_host", "value": "https://api.checks.truora.com" },
+    { "key": "validations_host", "value": "https://api.validations.truora.com" },
+    { "key": "identity_host", "value": "https://api.identity.truora.com" },
+    { "key": "account_host", "value": "https://api.account.truora.com" },
+    { "key": "truora_api_key", "value": "" },
+    { "key": "check_id", "value": "" },
+    { "key": "validation_id", "value": "" },
+    { "key": "process_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Checks",
+      "item": [
+        {
+          "name": "Create Background Check",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Truora-API-Key", "value": "{{truora_api_key}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "url": {
+              "raw": "{{checks_host}}/v1/checks",
+              "host": ["{{checks_host}}"],
+              "path": ["v1", "checks"]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "national_id", "value": "1234567890" },
+                { "key": "country", "value": "CO" },
+                { "key": "type", "value": "person" },
+                { "key": "user_authorized", "value": "true" }
+              ]
+            },
+            "description": "Creates a background check for a person, vehicle, or company across LatAm databases."
+          }
+        },
+        {
+          "name": "List Checks",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Truora-API-Key", "value": "{{truora_api_key}}" }],
+            "url": {
+              "raw": "{{checks_host}}/v1/checks",
+              "host": ["{{checks_host}}"],
+              "path": ["v1", "checks"]
+            }
+          }
+        },
+        {
+          "name": "Get Check",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Truora-API-Key", "value": "{{truora_api_key}}" }],
+            "url": {
+              "raw": "{{checks_host}}/v1/checks/{{check_id}}",
+              "host": ["{{checks_host}}"],
+              "path": ["v1", "checks", "{{check_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Check PDF",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Truora-API-Key", "value": "{{truora_api_key}}" }],
+            "url": {
+              "raw": "{{checks_host}}/v1/checks/{{check_id}}/pdf",
+              "host": ["{{checks_host}}"],
+              "path": ["v1", "checks", "{{check_id}}", "pdf"]
+            }
+          }
+        },
+        {
+          "name": "Get Check Attachments",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Truora-API-Key", "value": "{{truora_api_key}}" }],
+            "url": {
+              "raw": "{{checks_host}}/v1/checks/{{check_id}}/attachments",
+              "host": ["{{checks_host}}"],
+              "path": ["v1", "checks", "{{check_id}}", "attachments"]
+            }
+          }
+        },
+        {
+          "name": "Create Continuous Check",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Truora-API-Key", "value": "{{truora_api_key}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "url": {
+              "raw": "{{checks_host}}/v1/continuous-check",
+              "host": ["{{checks_host}}"],
+              "path": ["v1", "continuous-check"]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "national_id", "value": "1234567890" },
+                { "key": "country", "value": "CO" },
+                { "key": "type", "value": "person" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Validators",
+      "item": [
+        {
+          "name": "Create Validation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Truora-API-Key", "value": "{{truora_api_key}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "url": {
+              "raw": "{{validations_host}}/v1/validations",
+              "host": ["{{validations_host}}"],
+              "path": ["v1", "validations"]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "type", "value": "document-validation" },
+                { "key": "country", "value": "CO" },
+                { "key": "document_type", "value": "national-id" },
+                { "key": "user_authorized", "value": "true" }
+              ]
+            },
+            "description": "Creates a KYC validation. Document/face validations return signed upload URLs (front_url, reverse_url)."
+          }
+        },
+        {
+          "name": "Get Validation",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Truora-API-Key", "value": "{{truora_api_key}}" }],
+            "url": {
+              "raw": "{{validations_host}}/v1/validations/{{validation_id}}?show_details=true",
+              "host": ["{{validations_host}}"],
+              "path": ["v1", "validations", "{{validation_id}}"],
+              "query": [{ "key": "show_details", "value": "true" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Digital Identity",
+      "item": [
+        {
+          "name": "Get Process",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Truora-API-Key", "value": "{{truora_api_key}}" }],
+            "url": {
+              "raw": "{{identity_host}}/v1/processes/{{process_id}}",
+              "host": ["{{identity_host}}"],
+              "path": ["v1", "processes", "{{process_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Process Result",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Truora-API-Key", "value": "{{truora_api_key}}" }],
+            "url": {
+              "raw": "{{identity_host}}/v1/processes/{{process_id}}/result",
+              "host": ["{{identity_host}}"],
+              "path": ["v1", "processes", "{{process_id}}", "result"]
+            },
+            "description": "Returns the consolidated result of a web or WhatsApp Digital Identity verification process."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "Create API Key / Web Integration Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Truora-API-Key", "value": "{{truora_api_key}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "url": {
+              "raw": "{{account_host}}/v1/api-keys",
+              "host": ["{{account_host}}"],
+              "path": ["v1", "api-keys"]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "key_type", "value": "web" },
+                { "key": "grant", "value": "digital-identity" },
+                { "key": "api_key_version", "value": "1" },
+                { "key": "country", "value": "CO" }
+              ]
+            },
+            "description": "Issues a backend JWT or a short-lived web integration token (key_type=web) to launch browser / WhatsApp Digital Identity flows."
+          }
+        },
+        {
+          "name": "List API Keys",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Truora-API-Key", "value": "{{truora_api_key}}" }],
+            "url": {
+              "raw": "{{account_host}}/v1/api-keys",
+              "host": ["{{account_host}}"],
+              "path": ["v1", "api-keys"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

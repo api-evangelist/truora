@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/truora-openapi.yml
+summary:
+  types:
+  - apiKey
+schemes:
+- name: TruoraApiKey
+  type: apiKey
+  in: header
+  headerName: Truora-API-Key
+  format: JWT
+  notes: >-
+    Every request across all four hosts (api.checks, api.validations,
+    api.identity, api.account) authenticates with a Truora-API-Key request
+    header. The value is a JWT issued from the Truora dashboard or the
+    POST /v1/api-keys endpoint. Backend keys (key_type=backend) authenticate
+    server-to-server calls; web keys (key_type=web) are short-lived tokens
+    that launch browser / WhatsApp Digital Identity flows. The JWT is shown
+    only once at creation and must be stored securely.
+  sources:
+  - https://dev.truora.com/validators/authentication/
+  - https://dev.truora.com/guides/web_integration_token/
+  - openapi/truora-openapi.yml

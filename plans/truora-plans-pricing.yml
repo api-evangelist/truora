@@ -1,0 +1,119 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Truora
+providerId: truora
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: false
+tags:
+- Identity Verification
+- KYC
+- Background Checks
+- Fraud Prevention
+- LatAm
+- Plans
+description: >-
+  Truora prices by check / validation volume via quote-based commercial plans;
+  concrete per-verification rates and tier prices are not published on the
+  public pricing pages and require contacting sales. There is no self-serve
+  public price list. A free trial is available to evaluate the products. Plans
+  scale support and per-check discounts (up to ~2x additional checks) with
+  volume.
+notes: >-
+  No public currency-specific per-verification pricing is listed on
+  truora.com/en/pricing as of 2026-07-17 (the pages route to sales). Reconcile
+  with a sales quote for CO/MX/BR/CL/PE-specific per-check and per-validation
+  rates.
+sources:
+- https://www.truora.com/en/pricing/
+- https://www.truora.com/en/pricing/background-checks
+- https://www.truora.com/en/pricing/digital-identity
+plans:
+- id: truora-free-trial
+  name: Free Trial
+  type: trial
+  description: >-
+    Time- or volume-limited evaluation access to Truora products before a
+    commercial agreement.
+  entries:
+  - label: Trial Access
+    name: trial
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: LatAm
+    unit: 1
+    price: free trial (contact Truora)
+    userMultiplied: false
+  elements:
+  - name: Background Checks (evaluation)
+  - name: Validators (evaluation)
+- id: truora-volume
+  name: Volume Plan
+  type: usage
+  description: >-
+    Quote-based commercial plan priced by monthly check / validation volume,
+    with per-check discounts and customized support that scale with volume.
+  entries:
+  - label: Background Check
+    name: background_check
+    type: usage
+    metric: checks
+    limit: -1
+    timeFrame: month
+    geo: LatAm
+    unit: 1
+    price: contact sales (volume-based)
+    userMultiplied: false
+  - label: KYC Validation
+    name: validation
+    type: usage
+    metric: validations
+    limit: -1
+    timeFrame: month
+    geo: LatAm
+    unit: 1
+    price: contact sales (volume-based)
+    userMultiplied: false
+  - label: Digital Identity Process
+    name: identity_process
+    type: usage
+    metric: processes
+    limit: -1
+    timeFrame: month
+    geo: LatAm
+    unit: 1
+    price: contact sales (volume-based)
+    userMultiplied: false
+  elements:
+  - name: Checks API
+  - name: Validators API
+  - name: Digital Identity API
+  - name: WhatsApp Conversational Flows
+- id: truora-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Negotiated agreements for high-volume KYC/onboarding programs with custom
+    integrations, WhatsApp flows, continuous monitoring, dedicated support, and
+    LatAm compliance terms. Contact Truora sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: LatAm
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Continuous Monitoring
+  - name: Custom WhatsApp Integrations
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

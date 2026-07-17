@@ -1,0 +1,96 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Truora
+providerId: truora
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: false
+tags:
+- Identity Verification
+- KYC
+- Background Checks
+- LatAm
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Truora spend. Truora bills per background check, per KYC
+  validation, and per Digital Identity / WhatsApp process under quote-based
+  volume plans. Because rates are volume-negotiated per LatAm market, cost
+  management centers on attributing per-check / per-validation spend to
+  workflows and monitoring conversion vs. verification volume.
+notes: >-
+  Per-verification rates are quote-based and not publicly listed; reconcile
+  against the commercial agreement. Currency will typically be USD or local
+  LatAm currency depending on the contracting entity.
+sources:
+- https://www.truora.com/en/pricing/
+- https://dev.truora.com/docs/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Truora
+serviceCategory: Identity and Fraud Prevention
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Truora
+  ServiceCategory: Identity and Fraud Prevention
+  ProviderName: Truora
+  PublisherName: Truora
+  InvoiceIssuerName: Truora
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: background_checks
+  description: Background checks created via POST /v1/checks, billed per check by type and country.
+  unit: checks
+  aggregation: sum
+  dimensions:
+  - account
+  - check_type
+  - country
+- name: validations
+  description: KYC validations (document, face, email, phone) created via POST /v1/validations.
+  unit: validations
+  aggregation: sum
+  dimensions:
+  - account
+  - validation_type
+  - country
+- name: identity_processes
+  description: Digital Identity / WhatsApp verification processes billed per completed process.
+  unit: processes
+  aggregation: sum
+  dimensions:
+  - account
+  - country
+- name: continuous_checks
+  description: Recurring continuous-monitoring re-checks.
+  unit: checks
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Attribute per-check and per-validation spend by account_id, check_type, and country.
+- name: Allocation
+  description: Tag API keys per product/workflow (checks vs. validators vs. identity) to map spend to teams.
+- name: Optimization
+  description: Route to the lightest sufficient product (email/phone validation before full document + face); avoid duplicate checks via account_id linking.
+- name: Accountability
+  description: Review monthly verification volume against onboarding conversion and budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,27 @@
+generated: '2026-07-17'
+method: searched
+probe: false
+source: https://www.truora.com/en/security
+url: https://www.truora.com/en/security
+certifications:
+- ISO 27001
+- SOC 2
+- GDPR
+compliance:
+- KYC
+- AML
+- Habeas Data (LatAm data-protection / user_authorized consent required on checks and validations)
+evidence:
+- source: https://www.truora.com/
+  keywords:
+  - security
+  - data protection
+  - iso 27001
+  - kyc
+  - aml
+notes: >-
+  Truora processes regulated personal identity data across LatAm jurisdictions
+  and requires explicit end-user authorization (user_authorized=true) on
+  background checks and validations. Certification list is modeled from public
+  security/marketing pages and should be reconciled against a formal trust
+  center or security whitepaper.

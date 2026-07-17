@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: modeled
+source: apis.yml hosts + Truora developer documentation
+note: >-
+  Modeled from documented API hosts; live DNS/TLS/HTTP probe values were not
+  captured in this pass and should be filled in on reconciliation.
+hosts:
+- host: www.truora.com
+  https: true
+- host: dev.truora.com
+  https: true
+- host: api.checks.truora.com
+  https: true
+- host: api.validations.truora.com
+  https: true
+- host: api.identity.truora.com
+  https: true
+- host: api.account.truora.com
+  https: true
+domains:
+- domain: truora.com
+  notes: >-
+    Root brand and marketing domain; developer docs at dev.truora.com, product
+    dashboard at app.truora.com. Four production API subdomains are documented.

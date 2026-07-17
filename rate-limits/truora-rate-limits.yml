@@ -1,0 +1,48 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Truora
+providerId: truora
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: false
+tags:
+- Identity Verification
+- KYC
+- Background Checks
+- LatAm
+- Rate Limiting
+- Quotas
+description: >-
+  Truora does not publish specific numeric per-endpoint rate limits in its
+  developer documentation. Access is governed per API key and per commercial
+  plan / check volume; heavy throughput is expected to be arranged with the
+  account team. Standard HTTP 429 responses apply when limits are exceeded.
+  Specific per-key request-per-minute values are not reconciled in this artifact.
+notes: >-
+  Verify per-key and per-plan limits with Truora during reconciliation; limits
+  scale with the commercial volume agreement rather than a published public tier.
+sources:
+- https://dev.truora.com/docs/
+- https://dev.truora.com/guides/api_integration_guide/
+responseCodes:
+  throttled: 429
+limits:
+- name: Per-API-Key Requests
+  scope: api_key
+  metric: requests
+  limit: see provider documentation
+  notes: Throughput is governed per API key and per commercial plan; not publicly numeric.
+- name: Check Volume
+  scope: account
+  metric: checks
+  limit: per commercial plan
+  notes: Background-check volume is set by the plan / quote, not a public rate limit.
+policies:
+- name: Plan-Based Limits
+  description: Request and check volume scale with the commercial agreement and API-key grants.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
