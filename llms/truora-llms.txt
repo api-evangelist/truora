@@ -1,0 +1,16 @@
+# Truora Documentation
+
+> Truora is an identity-verification platform. This file lists documentation pages for Truora Pass, an OAuth 2.0 / OpenID Connect Identity Provider that lets applications authenticate users and consume verified identity data.
+
+## Truora Pass integration
+
+- [Getting started](https://developer.truora.com/truora-pass/getting_started/): What the Truora Pass IdP is and why to integrate it, the OAuth2/OIDC integration model, available flows, the base URLs, and a copy-paste AI-integration prompt.
+- [Registering your application](https://developer.truora.com/truora-pass/registering_your_application/): Self-serve registration on the Truora Pass Dashboard — create the application, save the client_secret shown exactly once, and configure redirect_uris, scopes, web_message origins, allowed email domains, and assurance-level policies.
+- [Authorization Code flow](https://developer.truora.com/truora-pass/authorization_code_flow/): The canonical redirect integration — build the authorize URL, receive the code at your redirect_uri, exchange it at POST /v1/oauth2/token (JSON), and call userinfo.
+- [Embedded SDK](https://developer.truora.com/truora-pass/embedded_sdk/): The TruoraPass client.js SDK — TruoraPass.init and TruoraPass.authorize, the in-page modal with response_mode=web_message, and the registration requirements for allowed origins.
+- [Decoupled authorization (CIBA)](https://developer.truora.com/truora-pass/ciba_flow/): Backchannel flow — POST /v1/oauth2/bc-authorize (form) returns auth_req_id, the user approves on their device, and you poll POST /v1/oauth2/token with the CIBA grant URN.
+- [Refresh tokens](https://developer.truora.com/truora-pass/refresh_tokens/): grant_type=refresh_token — single-use rotating tokens, reuse detection revokes the token family, optional scope down-scoping, 365-day default lifetime.
+- [UserInfo and claims](https://developer.truora.com/truora-pass/userinfo_and_claims/): GET /v1/oauth2/userinfo with a Bearer access token — the claims released per granted scope, and the fixed id_token claim set.
+- [Scopes reference](https://developer.truora.com/truora-pass/scopes_reference/): Catalog of requestable scopes (openid, email, phone, profile, identity, documents, age, address, background, biometric, verification, contact, nationality) and granular document scopes.
+- [Verification results](https://developer.truora.com/truora-pass/verification_results/): Consuming identity-verification outcomes — identity_verified, verification_status, trust_level, document and biometric claims.
+- [Errors and troubleshooting](https://developer.truora.com/truora-pass/errors_and_troubleshooting/): Error response formats per endpoint and fixes for common integration mistakes (redirect_uri mismatch, expired code, scope not granted).

@@ -1,0 +1,71 @@
+generated: '2026-07-17'
+method: searched
+source: https://dev.truora.com/truora-pass/scopes_reference/
+docs: https://dev.truora.com/truora-pass/scopes_reference/
+notes: >-
+  OAuth scopes apply to Truora Pass — Truora's OAuth 2.0 / OpenID Connect Identity
+  Provider (developer/dev.truora.com/truora-pass/). Truora Pass lets applications
+  authenticate a user and consume that user's verified-identity data (document,
+  biometric, background, contact claims) via standard OIDC. This is distinct from
+  the core Checks/Validators/Digital-Identity/Account REST APIs, which authenticate
+  with the Truora-API-Key header and have no OAuth scope surface. The Authorization
+  Code, Embedded SDK (web_message), and CIBA (decoupled) flows all request these
+  scopes; the `documents` and `background` scopes require a `binding_message`
+  parameter in CIBA requests.
+schemes:
+  - name: TruoraPassOAuth2
+    type: oauth2
+    source: https://dev.truora.com/truora-pass/getting_started/
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://pass.truora.com/authorize
+        tokenUrl: https://api.pass.truora.com/v1/oauth2/token
+        userinfoUrl: https://api.pass.truora.com/v1/oauth2/userinfo
+      - flow: ciba
+        deviceAuthorizationUrl: https://api.pass.truora.com/v1/oauth2/bc-authorize
+        tokenUrl: https://api.pass.truora.com/v1/oauth2/token
+      - flow: refreshToken
+        tokenUrl: https://api.pass.truora.com/v1/oauth2/token
+scopes:
+  - scope: openid
+    description: Enables OpenID Connect base functionality and the stable user identifier.
+    flows: [authorizationCode, ciba]
+  - scope: email
+    description: User's email address and verification state.
+    flows: [authorizationCode, ciba]
+  - scope: phone
+    description: User's phone number and verification state.
+    flows: [authorizationCode, ciba]
+  - scope: profile
+    description: Basic profile — name, gender, birthdate, nationality.
+    flows: [authorizationCode, ciba]
+  - scope: identity
+    description: Identity-verification status, document details, and verified name.
+    flows: [authorizationCode, ciba]
+  - scope: documents
+    description: All verified documents from the user. Requires binding_message in CIBA.
+    flows: [authorizationCode, ciba]
+  - scope: age
+    description: Age range, verification status, and birthdate.
+    flows: [authorizationCode, ciba]
+  - scope: address
+    description: User's address information.
+    flows: [authorizationCode, ciba]
+  - scope: background
+    description: Background-check outcome and trust level. Requires binding_message in CIBA.
+    flows: [authorizationCode, ciba]
+  - scope: biometric
+    description: Face-enrollment status, liveness verification, and confidence metrics.
+    flows: [authorizationCode, ciba]
+  - scope: verification
+    description: Overall verification status, methods used, and verification date.
+    flows: [authorizationCode, ciba]
+  - scope: contact
+    description: Bundled contact info — email, phone, and communication preference.
+    flows: [authorizationCode, ciba]
+  - scope: nationality
+    description: User's nationality information.
+    flows: [authorizationCode, ciba]
+  - scope: "document:<COUNTRY>:<TYPE>"
+    description: Granular scope filtering released documents by country and document type.
+    flows: [authorizationCode, ciba]

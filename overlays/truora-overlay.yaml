@@ -1,0 +1,46 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Truora API
+  version: 1.0.0
+extends: openapi/truora-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enrichment-round: '2026-07-17'
+      x-apievangelist-artifacts:
+        - authentication/truora-authentication.yml
+        - scopes/truora-scopes.yml
+        - conventions/truora-conventions.yml
+        - errors/truora-problem-types.yml
+        - lifecycle/truora-lifecycle.yml
+        - conformance/truora-conformance.yml
+        - data-model/truora-data-model.yml
+        - asyncapi/truora-webhooks.yml
+        - packages/truora-packages.yml
+        - components/truora-components.yml
+        - mcp/truora-mcp.yml
+        - skills/_index.yml
+  - target: $.info
+    update:
+      x-truora-hosts:
+        checks: https://api.checks.truora.com
+        validations: https://api.validations.truora.com
+        identity: https://api.identity.truora.com
+        account: https://api.account.truora.com
+        pass: https://api.pass.truora.com
+  - target: $.components.securitySchemes.TruoraApiKey
+    update:
+      x-key-types: [backend, web]
+      x-issued-via: POST /v1/api-keys
+  - target: "$.paths['/v1/checks'].post"
+    update:
+      x-idempotency: >-
+        Check creation is de-duplicated by default; set force_creation=true to force
+        a new check. This is a dedup toggle, not an Idempotency-Key contract.
+  - target: $
+    update:
+      x-webhooks-ref: asyncapi/truora-webhooks.yml
+      x-oauth-product:
+        name: Truora Pass
+        model: OAuth2 / OIDC
+        scopes_ref: scopes/truora-scopes.yml

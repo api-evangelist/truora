@@ -1,0 +1,21 @@
+generated: '2026-07-17'
+method: generated
+source: openapi/truora-openapi.yml
+notes: >-
+  Packaged Agent Skills for Truora's marquee flows. Each skill is grounded in real
+  operationIds verified in openapi/truora-openapi.yml, plus the auth, error, and
+  convention rules captured in this repo. No provider-published AGENTS.md / skill
+  files were found; these are generated operating instructions.
+skills:
+  - file: truora-run-background-check.md
+    name: Run a LatAm background check and read the result
+    api: openapi/truora-openapi.yml
+    operations: [createCheck, getCheck, getCheckVariables, getCheckPdf]
+  - file: truora-kyc-validation.md
+    name: Run a KYC document or face validation
+    api: openapi/truora-openapi.yml
+    operations: [createValidation, getValidation]
+  - file: truora-digital-identity-process.md
+    name: Launch and read a Digital Identity / WhatsApp verification process
+    api: openapi/truora-openapi.yml
+    operations: [createApiKey, getProcess, getProcessResult]

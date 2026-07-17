@@ -1,0 +1,22 @@
+generated: '2026-07-17'
+method: searched
+source: https://dev.truora.com/
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://dev.truora.com/docs/
+  note: All REST hosts version under /v1/; api_key_version (1|2) selects the API-key format.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No published deprecation policy or RFC 8594 Sunset/Deprecation header support
+    was found. The legacy iOS/Flutter SDKs are archived on GitHub, indicating
+    lifecycle management at the SDK level.
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: null
+  note: No public status page was located during this pass.
+deprecated_operations: []

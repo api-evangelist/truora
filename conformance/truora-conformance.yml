@@ -1,0 +1,39 @@
+generated: '2026-07-17'
+method: searched
+source: https://www.truora.com/en/iso-27001-certification
+notes: >-
+  Standards conformance for Truora. The core REST APIs authenticate with an API-key
+  header and use a custom JSON error envelope; the Truora Pass product implements
+  OAuth 2.0 / OpenID Connect (including CIBA). Compliance certifications are
+  published on Truora's ISO 27001 page and its Vanta trust center.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: Truora Pass implements OAuth 2.0 (authorization code, CIBA, refresh token) — dev.truora.com/truora-pass/
+  - id: oidc
+    conforms: true
+    evidence: Truora Pass is an OpenID Connect Identity Provider with /userinfo and id_token claims
+  - id: oidc-ciba
+    conforms: true
+    evidence: Decoupled backchannel flow via /v1/oauth2/bc-authorize (CIBA grant URN)
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom {code,message} envelope, not application/problem+json
+  - id: iso-27001
+    conforms: true
+    evidence: ISO 27001 ISMS certification — https://www.truora.com/en/iso-27001-certification
+  - id: iso-30107
+    conforms: true
+    evidence: ISO 30107 biometric presentation-attack-detection referenced for liveness/face products
+  - id: gdpr
+    conforms: true
+    evidence: GDPR data-protection compliance stated on truora.com
+  - id: kyc
+    conforms: true
+    evidence: KYC validations (document/face/email/phone) are the core Validators + Digital Identity product
+  - id: aml
+    conforms: true
+    evidence: AML/background screening across LatAm databases via the Checks API
+  - id: habeas-data
+    conforms: true
+    evidence: LatAm data-protection consent — user_authorized=true required on checks and validations

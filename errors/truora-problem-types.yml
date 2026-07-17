@@ -1,0 +1,35 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/truora-openapi.yml
+format: custom
+envelope:
+  shape: '{ "code": <int>, "message": <string> }'
+  note: >-
+    Truora returns a simple JSON error envelope with an integer `code` and a human
+    `message`; it does not use RFC 9457 application/problem+json. Errors are also
+    surfaced on resource state — e.g. a check `status` of `error`/`delayed` or a
+    validation `validation_status` of `failure` — rather than only as HTTP errors.
+problems:
+  - status: 401
+    title: Unauthorized
+    detail: Missing or invalid Truora-API-Key.
+    source_operations:
+      - openapi/truora-openapi.yml#createCheck
+      - openapi/truora-openapi.yml#createValidation
+      - openapi/truora-openapi.yml#createApiKey
+      - openapi/truora-openapi.yml#listChecks
+  - status: 404
+    title: Not found
+    detail: The requested resource (check, validation, process, or api-key) does not exist.
+    source_operations:
+      - openapi/truora-openapi.yml#getCheck
+      - openapi/truora-openapi.yml#deleteCheck
+      - openapi/truora-openapi.yml#getValidation
+      - openapi/truora-openapi.yml#getProcess
+      - openapi/truora-openapi.yml#getProcessResult
+      - openapi/truora-openapi.yml#deleteApiKey
+truora_pass_errors:
+  note: >-
+    Truora Pass (OAuth2/OIDC) returns standard OAuth2 error responses per endpoint;
+    see https://dev.truora.com/truora-pass/errors_and_troubleshooting/ for
+    redirect_uri mismatch, expired code, and scope-not-granted cases.

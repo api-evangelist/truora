@@ -1,0 +1,79 @@
+generated: '2026-07-17'
+method: searched
+source: https://dev.truora.com/guides/webhook_events_and_variables/
+spec_type: Webhooks
+notes: >-
+  Truora does not publish an AsyncAPI document. It documents a rules-based webhook
+  engine: a "rule" is an event that triggers actions (send a webhook HTTPS request,
+  send an email). Webhook payloads are delivered as a JWT (Base64-encoded) to the
+  configured endpoint; the receiver decodes the JWT to read the event object. Rules
+  are configured in the dashboard or via the webhook-rule API, selecting the HTTP
+  method, target URL, and optional parameters/headers. Events are grouped by product.
+delivery:
+  format: JWT
+  transport: HTTPS webhook (configurable method + URL + headers)
+  config: rule engine (dashboard / webhook-rule API)
+docs:
+  rules: https://dev.truora.com/guides/webhook_rule/
+  events_and_variables: https://dev.truora.com/guides/webhook_events_and_variables/
+  digital_identity_webhooks: https://dev.truora.com/digital-identity/web_webhooks/
+  validators_webhooks: https://dev.truora.com/validators/webhook_events_and_variables/
+  whatsapp_webhooks: https://dev.truora.com/guides/wa_webhooks/
+event_catalog:
+  - product: Background Checks
+    events:
+      - check.created
+      - check.started
+      - check.delayed
+      - check.finished
+      - check.decision_variables_finished
+      - continuous_check.changed
+  - product: Digital Identity (Web / Mobile)
+    events:
+      - identity_flow.created
+      - identity_flow.updated
+      - identity_flow.deleted
+      - identity_flow.cloned
+      - identity_flow.restored
+      - identity_process.created
+      - identity_process.succeeded
+      - identity_process.failed
+      - step.succeeded
+      - overwritten.failure
+      - overwritten.success
+      - phone_verification.created
+      - phone_verification.succeeded
+      - phone_verification.failed
+      - face_recognition.created
+      - face_recognition.succeeded
+      - face_recognition.failed
+      - email_verification.created
+      - email_verification.succeeded
+      - email_verification.failed
+      - document_validation.created
+      - document_validation.succeeded
+      - document_validation.failed
+      - electronic_signature.created
+      - electronic_signature.succeeded
+      - electronic_signature.failed
+  - product: Validators (Face Search)
+    events:
+      - face_search.enrolled
+      - face_search.created
+      - face_search.succeeded
+      - face_search.failed
+      - face_search.enrollment_deleted
+  - product: Customer Engagement (WhatsApp / Truconnect)
+    events:
+      - conversation.user_initiated_inbound
+      - outbound_message.sent
+      - outbound_message.accepted
+      - outbound_message.cancelled
+      - truconnect.notification_sent
+      - truconnect.process_started
+      - truconnect.process_succeeded
+      - truconnect.process_failed
+note_on_event_names: >-
+  Event names are normalized to dot notation from the human-readable event labels
+  published in Truora's webhook events guide; the labels (e.g. "Check finished")
+  are authoritative, the dot-notation slugs are a convenience for cataloguing.

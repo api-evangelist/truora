@@ -1,0 +1,41 @@
+generated: '2026-07-17'
+method: searched
+source: https://github.com/truora
+notes: >-
+  Truora ships client SDKs for its mobile identity-capture / validation flows.
+  The historical iOS (TruoraSDK) and Flutter (TruoraFlutterSDK) SDKs are archived;
+  the maintained mobile surface is truora-validations-sdk (Swift) plus the Android
+  artifact on Maven Central. There is no first-party server-side SDK for the REST
+  Checks/Validators/Digital-Identity/Account APIs — those are called directly over
+  HTTP with the Truora-API-Key header. The Truora Pass browser SDK (client.js) is a
+  hosted embeddable and is catalogued in components/ rather than here.
+packages:
+  - language: swift
+    registry: github
+    name: truora-validations-sdk
+    url: https://github.com/truora/truora-validations-sdk
+    install: Swift Package Manager / CocoaPods (see repo)
+    official: true
+    scope: Validators (document + facial validation mobile capture)
+  - language: swift
+    registry: github
+    name: TruoraSDK
+    url: https://github.com/truora/TruoraSDK
+    install: CocoaPods (see repo)
+    official: true
+    archived: true
+    scope: Legacy iOS identity-validation SDK (archived)
+  - language: dart
+    registry: github
+    name: TruoraFlutterSDK
+    url: https://github.com/truora/TruoraFlutterSDK
+    install: pub add (see repo)
+    official: true
+    archived: true
+    scope: Legacy Flutter identity-validation plugin (archived)
+  - language: java
+    registry: maven
+    name: com.truora.sdk
+    url: https://mvnrepository.com/artifact/com.truora.sdk
+    official: true
+    scope: Android identity-validation SDK artifacts

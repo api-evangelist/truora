@@ -1,24 +1,34 @@
 generated: '2026-07-17'
-method: modeled
-source: apis.yml hosts + Truora developer documentation
-note: >-
-  Modeled from documented API hosts; live DNS/TLS/HTTP probe values were not
-  captured in this pass and should be filled in on reconciliation.
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
 - host: www.truora.com
   https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 27 16:01:37 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
 - host: dev.truora.com
   https: true
+  tls_version: TLSv1.3
+  cert_expires: Feb 27 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 63072000
 - host: api.checks.truora.com
   https: true
-- host: api.validations.truora.com
-  https: true
-- host: api.identity.truora.com
-  https: true
-- host: api.account.truora.com
-  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 12 23:59:59 2027 GMT
+  hsts: null
 domains:
 - domain: truora.com
-  notes: >-
-    Root brand and marketing domain; developer docs at dev.truora.com, product
-    dashboard at app.truora.com. Four production API subdomains are documented.
+  dnssec: false
+  caa:
+  - 0 issue "amazontrust.com"
+  - 0 issue "awstrust.com"
+  - 0 issue "pki.goog"
+  - 0 issue "sectigo.com"
+  - 0 issuewild "amazon.com"
+  - 0 issuewild "amazonaws.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

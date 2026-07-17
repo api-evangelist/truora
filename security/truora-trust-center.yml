@@ -1,27 +1,28 @@
 generated: '2026-07-17'
 method: searched
 probe: false
-source: https://www.truora.com/en/security
-url: https://www.truora.com/en/security
+source: https://app.vanta.com/truora.com/trust/dno2uof19v4enmupm1kenj
+url: https://app.vanta.com/truora.com/trust/dno2uof19v4enmupm1kenj
+iso_27001_page: https://www.truora.com/en/iso-27001-certification
 certifications:
 - ISO 27001
-- SOC 2
+- ISO 30107
 - GDPR
 compliance:
 - KYC
 - AML
 - Habeas Data (LatAm data-protection / user_authorized consent required on checks and validations)
 evidence:
-- source: https://www.truora.com/
+- source: https://www.truora.com/en/iso-27001-certification
   keywords:
-  - security
-  - data protection
   - iso 27001
-  - kyc
-  - aml
+  - information security management system
+  - data protection
+- source: https://app.vanta.com/truora.com/trust/dno2uof19v4enmupm1kenj
+  kind: Vanta trust center
 notes: >-
-  Truora processes regulated personal identity data across LatAm jurisdictions
-  and requires explicit end-user authorization (user_authorized=true) on
-  background checks and validations. Certification list is modeled from public
-  security/marketing pages and should be reconciled against a formal trust
-  center or security whitepaper.
+  Truora publishes a Vanta-hosted trust center and a dedicated ISO 27001 ISMS
+  certification page. ISO 27001, ISO 30107 (biometric presentation-attack detection),
+  and GDPR are named on Truora's public pages. A SOC 2 report may be available under
+  NDA via the Vanta trust center (not independently confirmed in this pass and
+  therefore omitted from the certifications list above).

@@ -1,0 +1,30 @@
+generated: '2026-07-17'
+method: searched
+source: https://dev.truora.com/truora-pass/embedded_sdk/
+notes: >-
+  Client-side / embeddable surfaces Truora ships, distinct from the server-side and
+  mobile SDKs in packages/. Truora's Digital Identity product is delivered as hosted,
+  prebuilt verification flows launched from the browser (via a web integration token)
+  or over WhatsApp, and Truora Pass ships a browser SDK (client.js) that opens an
+  in-page OIDC modal.
+families:
+  - family: Truora Pass browser SDK
+    kind: hosted-js-modal
+    loader: https://pass.truora.com (client.js)
+    entrypoints: [TruoraPass.init, TruoraPass.authorize]
+    mechanism: response_mode=web_message in-page modal (allowed origins configured at registration)
+    docs: https://dev.truora.com/truora-pass/embedded_sdk/
+  - family: Digital Identity hosted web flow
+    kind: hosted-verification-flow
+    mechanism: >-
+      A key_type=web integration token launches a prebuilt Truora-hosted identity
+      verification flow (document + face + liveness) in the browser; results are
+      retrieved via getProcess / getProcessResult or delivered by webhook.
+    docs: https://dev.truora.com/guides/web_integration_token/
+  - family: WhatsApp conversational onboarding
+    kind: hosted-conversational-flow
+    mechanism: >-
+      Digital Identity / Customer Engagement flows run as a WhatsApp conversation;
+      no client code is embedded — the flow runs in WhatsApp and posts results back
+      via webhook.
+    docs: https://dev.truora.com/guides/wa_webhooks/

@@ -1,0 +1,62 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/truora-openapi.yml
+notes: >-
+  Entity-relationship graph derived from the modeled OpenAPI schemas and id-reference
+  fields. All primary resources are scoped to an account (account_id). Digital
+  Identity processes are launched via a web integration token (a web-type ApiKey) and
+  consolidate underlying document/face/liveness validations.
+entities:
+  - name: Account
+    id: account_id
+    note: The Truora tenant that owns all resources; established via the dashboard.
+  - name: ApiKey
+    id: api_key_id
+    fields: [api_key, key_type, grant, creation_date]
+    note: key_type backend (server JWT) or web (short-lived web integration token).
+  - name: Check
+    id: check_id
+    fields: [national_id, check_type, country, status, score, creation_date]
+    note: Background check on a person, vehicle, or company.
+  - name: ContinuousCheck
+    id: continuous_check_id
+    note: Recurring re-check subscription for a subject.
+  - name: Validation
+    id: validation_id
+    fields: [validation_status, front_url, reverse_url, details, creation_date]
+    note: KYC validation — document, face, email, phone, or electronic signature.
+  - name: Process
+    id: process_id
+    fields: [status, flow_id, creation_date]
+    note: Digital Identity verification process (web integration token or WhatsApp flow).
+relationships:
+  - from: ApiKey
+    to: Account
+    kind: belongs_to
+    via: account_id
+  - from: Check
+    to: Account
+    kind: belongs_to
+    via: account_id
+  - from: ContinuousCheck
+    to: Check
+    kind: has_many
+    via: national_id
+  - from: Validation
+    to: Account
+    kind: belongs_to
+    via: account_id
+  - from: Process
+    to: Account
+    kind: belongs_to
+    via: account_id
+  - from: Process
+    to: ApiKey
+    kind: belongs_to
+    via: web_integration_token
+    note: A Process is launched with a key_type=web ApiKey (web integration token).
+  - from: Process
+    to: Validation
+    kind: has_many
+    via: flow_id
+    note: A Process consolidates the document/face/liveness validations run in its flow.

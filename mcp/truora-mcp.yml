@@ -1,0 +1,62 @@
+generated: '2026-07-17'
+method: derived
+status: candidate
+source: openapi/truora-openapi.yml
+notes: >-
+  No official hosted/remote Truora MCP server was found (no @modelcontextprotocol
+  package, no registry entry, no docs reference). This is a DERIVED candidate tool
+  list — one tool per OpenAPI operation — as a starting point for an MCP server that
+  wraps the Truora REST APIs. Not an authoritative provider claim.
+server:
+  name: truora
+  transport: http
+  url: null
+tools:
+  - name: create_check
+    description: Create a background check on a person, vehicle, or company.
+    source_operation: openapi/truora-openapi.yml#createCheck
+  - name: list_checks
+    description: List background checks under the account.
+    source_operation: openapi/truora-openapi.yml#listChecks
+  - name: get_check
+    description: Get the status and scored results for a check.
+    source_operation: openapi/truora-openapi.yml#getCheck
+  - name: delete_check
+    description: Delete a background-check record.
+    source_operation: openapi/truora-openapi.yml#deleteCheck
+  - name: get_check_pdf
+    description: Get the PDF summary of a check.
+    source_operation: openapi/truora-openapi.yml#getCheckPdf
+  - name: get_check_variables
+    description: Get the variables (findings) discovered for a check.
+    source_operation: openapi/truora-openapi.yml#getCheckVariables
+  - name: get_check_attachments
+    description: Get certificate/document links for a check.
+    source_operation: openapi/truora-openapi.yml#getCheckAttachments
+  - name: create_continuous_check
+    description: Set up recurring background monitoring for a subject.
+    source_operation: openapi/truora-openapi.yml#createContinuousCheck
+  - name: list_continuous_checks
+    description: List active continuous checks.
+    source_operation: openapi/truora-openapi.yml#listContinuousChecks
+  - name: create_validation
+    description: Create a KYC validation (document, face, email, phone, e-signature).
+    source_operation: openapi/truora-openapi.yml#createValidation
+  - name: get_validation
+    description: Get the status and extracted details for a validation.
+    source_operation: openapi/truora-openapi.yml#getValidation
+  - name: get_process
+    description: Get the state of a Digital Identity process.
+    source_operation: openapi/truora-openapi.yml#getProcess
+  - name: get_process_result
+    description: Get the consolidated result of a Digital Identity process.
+    source_operation: openapi/truora-openapi.yml#getProcessResult
+  - name: create_api_key
+    description: Create a backend API key or a web integration token.
+    source_operation: openapi/truora-openapi.yml#createApiKey
+  - name: list_api_keys
+    description: List API keys on the account.
+    source_operation: openapi/truora-openapi.yml#listApiKeys
+  - name: delete_api_key
+    description: Revoke an API key.
+    source_operation: openapi/truora-openapi.yml#deleteApiKey

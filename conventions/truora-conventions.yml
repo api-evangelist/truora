@@ -1,0 +1,57 @@
+generated: '2026-07-17'
+method: searched
+source: https://dev.truora.com/guides/api_integration_guide/
+notes: >-
+  Cross-cutting request/response semantics for the Truora REST APIs (Checks,
+  Validators, Digital Identity, Account). Derived from the modeled OpenAPI and the
+  public developer guides. Truora Pass (OAuth2/OIDC) follows standard OIDC
+  conventions and is documented separately in scopes/ and authentication/.
+authentication:
+  style: api-key-header
+  header: Truora-API-Key
+  value: JWT issued from the dashboard or POST /v1/api-keys
+  key_types: [backend, web]
+  docs: https://dev.truora.com/validators/authentication/
+request_encoding:
+  write_operations: application/x-www-form-urlencoded
+  note: >-
+    POST bodies (create check, create validation, create api-key) are form-encoded,
+    not JSON. Read operations return application/json (PDF/binary for check PDFs).
+idempotency:
+  supported: false
+  dedup_hint:
+    field: force_creation
+    behavior: >-
+      Check creation is de-duplicated by default — a repeat createCheck for the same
+      subject returns the existing check unless force_creation=true forces a new one.
+      This is a dedup toggle, NOT an Idempotency-Key contract; Truora documents no
+      idempotency-key header.
+pagination:
+  style: page-size
+  params:
+    - page_size (listChecks and other list operations)
+  note: List endpoints accept page_size; cursor/token paging is not documented.
+versioning:
+  scheme: uri-path
+  current: v1
+  note: All hosts version under /v1/ (e.g. /v1/checks, /v1/validations, /v1/oauth2/token).
+hosts:
+  - https://api.checks.truora.com        # Checks
+  - https://api.validations.truora.com   # Validators
+  - https://api.identity.truora.com      # Digital Identity
+  - https://api.account.truora.com       # Account / API keys
+  - https://api.pass.truora.com          # Truora Pass (OAuth2/OIDC)
+error_envelope:
+  shape: '{ "code": <int>, "message": <string> }'
+  format: custom (not RFC 9457 problem+json)
+  see: errors/truora-problem-types.yml
+webhooks:
+  model: rule-based, JWT-signed payloads
+  see: asyncapi/truora-webhooks.yml
+rate_limiting:
+  see: rate-limits/truora-rate-limits.yml
+cross_links:
+  authentication: authentication/truora-authentication.yml
+  errors: errors/truora-problem-types.yml
+  lifecycle: lifecycle/truora-lifecycle.yml
+  scopes: scopes/truora-scopes.yml
