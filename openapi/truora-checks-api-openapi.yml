@@ -1,0 +1,259 @@
+openapi: 3.0.3
+info:
+  title: Truora Account Checks API
+  description: 'Truora is a Latin American identity verification, background-check, and conversational-onboarding platform. This modeled specification documents the public REST surface across four production hosts: the Checks API (background checks on people, vehicles, and companies), the Validators API (document, facial, email, and phone validation), the Digital Identity API (web and WhatsApp verification processes), and the Account API (API-key and web integration token management). All requests authenticate with a `Truora-API-Key` header.'
+  termsOfService: https://www.truora.com/en/terms-and-conditions
+  contact:
+    name: Truora Developers
+    url: https://dev.truora.com/
+  version: '1.0'
+servers:
+- url: https://api.checks.truora.com
+  description: Checks API (background checks) - default host
+- url: https://api.validations.truora.com
+  description: Validators API (KYC validations)
+- url: https://api.identity.truora.com
+  description: Digital Identity API (web + WhatsApp processes)
+- url: https://api.account.truora.com
+  description: Account API (API keys and web integration tokens)
+security:
+- TruoraApiKey: []
+tags:
+- name: Checks
+  description: Background checks on persons, vehicles, and companies across LatAm.
+paths:
+  /v1/checks:
+    servers:
+    - url: https://api.checks.truora.com
+    post:
+      operationId: createCheck
+      tags:
+      - Checks
+      summary: Create a background check
+      description: Creates a background check for a person, vehicle, or company and queues it to begin collecting information from LatAm public and legal-entity databases. Poll the returned check_id with getCheck to retrieve results.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateCheckRequest'
+      responses:
+        '200':
+          description: Check created and queued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Check'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: listChecks
+      tags:
+      - Checks
+      summary: List background checks
+      description: Retrieves the background checks created under the account.
+      parameters:
+      - name: check_type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - person
+          - vehicle
+          - company
+      - name: page_size
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of checks.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  checks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Check'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/checks/{check_id}:
+    servers:
+    - url: https://api.checks.truora.com
+    parameters:
+    - $ref: '#/components/parameters/CheckId'
+    get:
+      operationId: getCheck
+      tags:
+      - Checks
+      summary: Get a background check
+      description: Retrieves the current status and scored results for a check.
+      responses:
+        '200':
+          description: The requested check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Check'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteCheck
+      tags:
+      - Checks
+      summary: Delete a background check
+      description: Removes a background check record from the account.
+      responses:
+        '200':
+          description: Check deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v1/checks/{check_id}/pdf:
+    servers:
+    - url: https://api.checks.truora.com
+    parameters:
+    - $ref: '#/components/parameters/CheckId'
+    get:
+      operationId: getCheckPdf
+      tags:
+      - Checks
+      summary: Get a check summary PDF
+      description: Returns a PDF summarizing the background-check results.
+      responses:
+        '200':
+          description: PDF document.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+  /v1/checks/{check_id}/variables:
+    servers:
+    - url: https://api.checks.truora.com
+    parameters:
+    - $ref: '#/components/parameters/CheckId'
+    get:
+      operationId: getCheckVariables
+      tags:
+      - Checks
+      summary: Get check variables
+      description: Returns the variables (findings) discovered for a background check.
+      responses:
+        '200':
+          description: Variables found for the check.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/checks/{check_id}/attachments:
+    servers:
+    - url: https://api.checks.truora.com
+    parameters:
+    - $ref: '#/components/parameters/CheckId'
+    get:
+      operationId: getCheckAttachments
+      tags:
+      - Checks
+      summary: Get check attachments
+      description: Returns links to the certificates and supporting documents found for a background check.
+      responses:
+        '200':
+          description: Attachment links.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    Check:
+      type: object
+      properties:
+        check_id:
+          type: string
+        account_id:
+          type: string
+        national_id:
+          type: string
+        check_type:
+          type: string
+        country:
+          type: string
+        creation_date:
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: e.g. not_started, in_progress, completed, error, delayed.
+        score:
+          type: number
+          format: float
+          description: Risk score between 0 and 1.
+    CreateCheckRequest:
+      type: object
+      required:
+      - national_id
+      - country
+      - type
+      properties:
+        national_id:
+          type: string
+          description: National identity number of the subject.
+        country:
+          type: string
+          description: ISO country code (CO, CL, MX, PE, BR, SV, CR).
+          enum:
+          - CO
+          - CL
+          - MX
+          - PE
+          - BR
+          - SV
+          - CR
+          - ALL
+        type:
+          type: string
+          enum:
+          - person
+          - vehicle
+          - company
+        force_creation:
+          type: boolean
+        user_authorized:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid Truora-API-Key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    CheckId:
+      name: check_id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    TruoraApiKey:
+      type: apiKey
+      in: header
+      name: Truora-API-Key
+      description: A JWT issued from the Truora dashboard or the /v1/api-keys endpoint, sent in the Truora-API-Key request header on every call.

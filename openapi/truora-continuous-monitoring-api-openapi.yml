@@ -1,0 +1,77 @@
+openapi: 3.0.3
+info:
+  title: Truora Account Continuous Monitoring API
+  description: 'Truora is a Latin American identity verification, background-check, and conversational-onboarding platform. This modeled specification documents the public REST surface across four production hosts: the Checks API (background checks on people, vehicles, and companies), the Validators API (document, facial, email, and phone validation), the Digital Identity API (web and WhatsApp verification processes), and the Account API (API-key and web integration token management). All requests authenticate with a `Truora-API-Key` header.'
+  termsOfService: https://www.truora.com/en/terms-and-conditions
+  contact:
+    name: Truora Developers
+    url: https://dev.truora.com/
+  version: '1.0'
+servers:
+- url: https://api.checks.truora.com
+  description: Checks API (background checks) - default host
+- url: https://api.validations.truora.com
+  description: Validators API (KYC validations)
+- url: https://api.identity.truora.com
+  description: Digital Identity API (web + WhatsApp processes)
+- url: https://api.account.truora.com
+  description: Account API (API keys and web integration tokens)
+security:
+- TruoraApiKey: []
+tags:
+- name: Continuous Monitoring
+  description: Recurring re-checks of previously verified subjects.
+paths:
+  /v1/continuous-check:
+    servers:
+    - url: https://api.checks.truora.com
+    post:
+      operationId: createContinuousCheck
+      tags:
+      - Continuous Monitoring
+      summary: Create a continuous check
+      description: Sets up recurring background monitoring for a subject.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                national_id:
+                  type: string
+                country:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                  - person
+                  - vehicle
+                  - company
+      responses:
+        '200':
+          description: Continuous check created.
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      operationId: listContinuousChecks
+      tags:
+      - Continuous Monitoring
+      summary: List continuous checks
+      description: Retrieves the active continuous checks configured on the account.
+      responses:
+        '200':
+          description: A list of continuous checks.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    TruoraApiKey:
+      type: apiKey
+      in: header
+      name: Truora-API-Key
+      description: A JWT issued from the Truora dashboard or the /v1/api-keys endpoint, sent in the Truora-API-Key request header on every call.

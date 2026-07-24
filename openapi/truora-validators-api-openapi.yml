@@ -1,0 +1,164 @@
+openapi: 3.0.3
+info:
+  title: Truora Account Validators API
+  description: 'Truora is a Latin American identity verification, background-check, and conversational-onboarding platform. This modeled specification documents the public REST surface across four production hosts: the Checks API (background checks on people, vehicles, and companies), the Validators API (document, facial, email, and phone validation), the Digital Identity API (web and WhatsApp verification processes), and the Account API (API-key and web integration token management). All requests authenticate with a `Truora-API-Key` header.'
+  termsOfService: https://www.truora.com/en/terms-and-conditions
+  contact:
+    name: Truora Developers
+    url: https://dev.truora.com/
+  version: '1.0'
+servers:
+- url: https://api.checks.truora.com
+  description: Checks API (background checks) - default host
+- url: https://api.validations.truora.com
+  description: Validators API (KYC validations)
+- url: https://api.identity.truora.com
+  description: Digital Identity API (web + WhatsApp processes)
+- url: https://api.account.truora.com
+  description: Account API (API keys and web integration tokens)
+security:
+- TruoraApiKey: []
+tags:
+- name: Validators
+  description: Document, facial, email, and phone validation (KYC).
+paths:
+  /v1/validations:
+    servers:
+    - url: https://api.validations.truora.com
+    post:
+      operationId: createValidation
+      tags:
+      - Validators
+      summary: Create a validation
+      description: Creates a KYC validation (document, facial, email, or phone). For document and face validations the response includes signed upload URLs (front_url, reverse_url) for submitting the subject's media.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateValidationRequest'
+      responses:
+        '200':
+          description: Validation created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Validation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/validations/{validation_id}:
+    servers:
+    - url: https://api.validations.truora.com
+    parameters:
+    - name: validation_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getValidation
+      tags:
+      - Validators
+      summary: Get a validation
+      description: Retrieves the status and extracted details (OCR data, match results, background info) for a validation.
+      parameters:
+      - name: show_details
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: When true, includes extracted document data and image links.
+      responses:
+        '200':
+          description: The requested validation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Validation'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Validation:
+      type: object
+      properties:
+        validation_id:
+          type: string
+        account_id:
+          type: string
+        validation_status:
+          type: string
+          description: e.g. pending, success, failure.
+        creation_date:
+          type: string
+          format: date-time
+        front_url:
+          type: string
+          description: Signed URL for uploading the front of a document.
+        reverse_url:
+          type: string
+          description: Signed URL for uploading the back of a document.
+        details:
+          type: object
+          description: Extracted OCR data, match results, and background info.
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    CreateValidationRequest:
+      type: object
+      required:
+      - type
+      - country
+      - user_authorized
+      properties:
+        type:
+          type: string
+          enum:
+          - document-validation
+          - face-recognition
+          - face-revalidation
+          - email
+          - phone
+          - electronic-signature
+        country:
+          type: string
+          enum:
+          - CO
+          - CL
+          - MX
+          - PE
+          - BR
+          - SV
+          - ALL
+        document_type:
+          type: string
+          description: e.g. national-id, passport, foreign-id, driver-license.
+        user_authorized:
+          type: boolean
+        account_id:
+          type: string
+        timeout:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid Truora-API-Key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    TruoraApiKey:
+      type: apiKey
+      in: header
+      name: Truora-API-Key
+      description: A JWT issued from the Truora dashboard or the /v1/api-keys endpoint, sent in the Truora-API-Key request header on every call.

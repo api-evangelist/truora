@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Truora Account Digital Identity API
+  description: 'Truora is a Latin American identity verification, background-check, and conversational-onboarding platform. This modeled specification documents the public REST surface across four production hosts: the Checks API (background checks on people, vehicles, and companies), the Validators API (document, facial, email, and phone validation), the Digital Identity API (web and WhatsApp verification processes), and the Account API (API-key and web integration token management). All requests authenticate with a `Truora-API-Key` header.'
+  termsOfService: https://www.truora.com/en/terms-and-conditions
+  contact:
+    name: Truora Developers
+    url: https://dev.truora.com/
+  version: '1.0'
+servers:
+- url: https://api.checks.truora.com
+  description: Checks API (background checks) - default host
+- url: https://api.validations.truora.com
+  description: Validators API (KYC validations)
+- url: https://api.identity.truora.com
+  description: Digital Identity API (web + WhatsApp processes)
+- url: https://api.account.truora.com
+  description: Account API (API keys and web integration tokens)
+security:
+- TruoraApiKey: []
+tags:
+- name: Digital Identity
+  description: Web and WhatsApp identity verification processes.
+paths:
+  /v1/processes/{process_id}:
+    servers:
+    - url: https://api.identity.truora.com
+    parameters:
+    - $ref: '#/components/parameters/ProcessId'
+    get:
+      operationId: getProcess
+      tags:
+      - Digital Identity
+      summary: Get a digital identity process
+      description: Retrieves the state of a Digital Identity verification process created via a web integration token or a WhatsApp conversational flow.
+      responses:
+        '200':
+          description: The requested process.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v1/processes/{process_id}/result:
+    servers:
+    - url: https://api.identity.truora.com
+    parameters:
+    - $ref: '#/components/parameters/ProcessId'
+    get:
+      operationId: getProcessResult
+      tags:
+      - Digital Identity
+      summary: Get digital identity process results
+      description: Returns the consolidated verification result (scored decision plus the underlying document, face, and liveness validations) for a completed Digital Identity or WhatsApp verification process.
+      responses:
+        '200':
+          description: The process result.
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    ProcessId:
+      name: process_id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Process:
+      type: object
+      properties:
+        process_id:
+          type: string
+        account_id:
+          type: string
+        status:
+          type: string
+        creation_date:
+          type: string
+          format: date-time
+        flow_id:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    TruoraApiKey:
+      type: apiKey
+      in: header
+      name: Truora-API-Key
+      description: A JWT issued from the Truora dashboard or the /v1/api-keys endpoint, sent in the Truora-API-Key request header on every call.
