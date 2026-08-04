@@ -1,0 +1,22 @@
+{
+  "provider": "truora",
+  "sources": [
+    "truora-account-api-openapi.yml",
+    "truora-checks-api-openapi.yml",
+    "truora-continuous-monitoring-api-openapi.yml",
+    "truora-digital-identity-api-openapi.yml",
+    "truora-validators-api-openapi.yml"
+  ],
+  "outputs": [
+    "truora-account-api-openapi.yml",
+    "truora-checks-api-openapi.yml",
+    "truora-continuous-monitoring-api-openapi.yml",
+    "truora-digital-identity-api-openapi.yml",
+    "truora-validators-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

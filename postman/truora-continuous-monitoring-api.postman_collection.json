@@ -1,0 +1,250 @@
+{
+  "info": {
+    "_postman_id": "4554e972-7a05-4793-8570-c2278e051f93",
+    "name": "Truora Account Continuous Monitoring API",
+    "description": "Truora is a Latin American identity verification, background-check, and conversational-onboarding platform. This modeled specification documents the public REST surface across four production hosts: the Checks API (background checks on people, vehicles, and companies), the Validators API (document, facial, email, and phone validation), the Digital Identity API (web and WhatsApp verification processes), and the Account API (API-key and web integration token management). All requests authenticate with a `Truora-API-Key` header.\n\nContact Support:\n Name: Truora Developers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:20:30.000Z",
+    "updatedAt": "2026-07-28T03:20:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4554e972-7a05-4793-8570-c2278e051f93"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "continuous-check",
+          "item": [
+            {
+              "name": "Create a continuous check",
+              "id": "6f46c718-efc5-4591-bf2d-1544088defd7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "national_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "person"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/continuous-check",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "continuous-check"
+                  ]
+                },
+                "description": "Sets up recurring background monitoring for a subject."
+              },
+              "response": [
+                {
+                  "id": "0487edaa-6605-4632-9c8c-121e368a7c5a",
+                  "name": "Continuous check created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Truora-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "national_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "country",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "type",
+                          "value": "person"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/continuous-check",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "continuous-check"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T03:20:31.000Z",
+                  "updatedAt": "2026-07-28T03:20:31.000Z",
+                  "uid": "35240-0487edaa-6605-4632-9c8c-121e368a7c5a"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:31.000Z",
+              "updatedAt": "2026-07-28T03:20:31.000Z",
+              "uid": "35240-6f46c718-efc5-4591-bf2d-1544088defd7"
+            },
+            {
+              "name": "List continuous checks",
+              "id": "0731e0f3-13d9-4955-b624-4bf1a091e93f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/continuous-check",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "continuous-check"
+                  ]
+                },
+                "description": "Retrieves the active continuous checks configured on the account."
+              },
+              "response": [
+                {
+                  "id": "d4024adf-c997-4ef2-9c4d-53b6a753e9d8",
+                  "name": "A list of continuous checks.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Truora-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/continuous-check",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "continuous-check"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T03:20:31.000Z",
+                  "updatedAt": "2026-07-28T03:20:31.000Z",
+                  "uid": "35240-d4024adf-c997-4ef2-9c4d-53b6a753e9d8"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:31.000Z",
+              "updatedAt": "2026-07-28T03:20:31.000Z",
+              "uid": "35240-0731e0f3-13d9-4955-b624-4bf1a091e93f"
+            }
+          ],
+          "id": "246f49c6-b59f-41d7-b2b8-8a2c9eee005d",
+          "createdAt": "2026-07-28T03:20:31.000Z",
+          "updatedAt": "2026-07-28T03:20:31.000Z",
+          "uid": "35240-246f49c6-b59f-41d7-b2b8-8a2c9eee005d"
+        }
+      ],
+      "id": "6ec10332-4792-496a-8b86-43f38bafc33a",
+      "createdAt": "2026-07-28T03:20:31.000Z",
+      "updatedAt": "2026-07-28T03:20:31.000Z",
+      "uid": "35240-6ec10332-4792-496a-8b86-43f38bafc33a"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Truora-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.checks.truora.com"
+    }
+  ]
+}

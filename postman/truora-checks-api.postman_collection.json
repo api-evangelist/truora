@@ -1,0 +1,1001 @@
+{
+  "info": {
+    "_postman_id": "a2afcb41-8012-4e98-aebb-fd91be4a9e8c",
+    "name": "Truora Account Checks API",
+    "description": "Truora is a Latin American identity verification, background-check, and conversational-onboarding platform. This modeled specification documents the public REST surface across four production hosts: the Checks API (background checks on people, vehicles, and companies), the Validators API (document, facial, email, and phone validation), the Digital Identity API (web and WhatsApp verification processes), and the Account API (API-key and web integration token management). All requests authenticate with a `Truora-API-Key` header.\n\nContact Support:\n Name: Truora Developers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:20:16.000Z",
+    "updatedAt": "2026-07-28T03:20:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a2afcb41-8012-4e98-aebb-fd91be4a9e8c"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "checks",
+          "item": [
+            {
+              "name": "{check_id}",
+              "item": [
+                {
+                  "name": "pdf",
+                  "item": [
+                    {
+                      "name": "Get a check summary PDF",
+                      "id": "93797f20-ef9e-4679-b016-e9a35452b132",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/pdf"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/checks/:check_id/pdf",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "checks",
+                            ":check_id",
+                            "pdf"
+                          ],
+                          "variable": [
+                            {
+                              "id": "bd9989b5-74a0-473e-87ac-e2294feb24e7",
+                              "key": "check_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns a PDF summarizing the background-check results."
+                      },
+                      "response": [
+                        {
+                          "id": "34de563b-817c-44a9-bdf7-f7f060af394a",
+                          "name": "PDF document.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/pdf"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Truora-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/checks/:check_id/pdf",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "checks",
+                                ":check_id",
+                                "pdf"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "check_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/pdf"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-07-28T03:20:17.000Z",
+                          "updatedAt": "2026-07-28T03:20:17.000Z",
+                          "uid": "35240-34de563b-817c-44a9-bdf7-f7f060af394a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:20:17.000Z",
+                      "updatedAt": "2026-07-28T03:20:17.000Z",
+                      "uid": "35240-93797f20-ef9e-4679-b016-e9a35452b132"
+                    }
+                  ],
+                  "id": "84b4a9f4-56bc-4ae4-bfd9-b20208b25373",
+                  "createdAt": "2026-07-28T03:20:16.000Z",
+                  "updatedAt": "2026-07-28T03:20:16.000Z",
+                  "uid": "35240-84b4a9f4-56bc-4ae4-bfd9-b20208b25373"
+                },
+                {
+                  "name": "variables",
+                  "item": [
+                    {
+                      "name": "Get check variables",
+                      "id": "ef382f29-7500-4a5c-8ade-97b3becedc2d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/checks/:check_id/variables",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "checks",
+                            ":check_id",
+                            "variables"
+                          ],
+                          "variable": [
+                            {
+                              "id": "37b75ac3-1afc-4f08-a308-a560d4433641",
+                              "key": "check_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns the variables (findings) discovered for a background check."
+                      },
+                      "response": [
+                        {
+                          "id": "0d0bd77b-9582-4c5d-b114-85d0c3096d12",
+                          "name": "Variables found for the check.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Truora-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/checks/:check_id/variables",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "checks",
+                                ":check_id",
+                                "variables"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "check_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:20:17.000Z",
+                          "updatedAt": "2026-07-28T03:20:17.000Z",
+                          "uid": "35240-0d0bd77b-9582-4c5d-b114-85d0c3096d12"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:20:17.000Z",
+                      "updatedAt": "2026-07-28T03:20:17.000Z",
+                      "uid": "35240-ef382f29-7500-4a5c-8ade-97b3becedc2d"
+                    }
+                  ],
+                  "id": "ca5d806a-bc72-45d6-bcbd-8fe602026c88",
+                  "createdAt": "2026-07-28T03:20:16.000Z",
+                  "updatedAt": "2026-07-28T03:20:16.000Z",
+                  "uid": "35240-ca5d806a-bc72-45d6-bcbd-8fe602026c88"
+                },
+                {
+                  "name": "attachments",
+                  "item": [
+                    {
+                      "name": "Get check attachments",
+                      "id": "d3d290b1-7ce1-4d4a-b226-a9d21caf3cca",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/checks/:check_id/attachments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "checks",
+                            ":check_id",
+                            "attachments"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4633c685-8c90-4859-89ed-79ec3ec23a48",
+                              "key": "check_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns links to the certificates and supporting documents found for a background check."
+                      },
+                      "response": [
+                        {
+                          "id": "befdd14b-eb1a-4d46-a15c-f0cdeb862f0f",
+                          "name": "Attachment links.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Truora-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/checks/:check_id/attachments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "checks",
+                                ":check_id",
+                                "attachments"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "check_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:20:17.000Z",
+                          "updatedAt": "2026-07-28T03:20:17.000Z",
+                          "uid": "35240-befdd14b-eb1a-4d46-a15c-f0cdeb862f0f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:20:17.000Z",
+                      "updatedAt": "2026-07-28T03:20:17.000Z",
+                      "uid": "35240-d3d290b1-7ce1-4d4a-b226-a9d21caf3cca"
+                    }
+                  ],
+                  "id": "fcfa4611-0087-496a-a7d7-289f207ef85e",
+                  "createdAt": "2026-07-28T03:20:16.000Z",
+                  "updatedAt": "2026-07-28T03:20:16.000Z",
+                  "uid": "35240-fcfa4611-0087-496a-a7d7-289f207ef85e"
+                },
+                {
+                  "name": "Get a background check",
+                  "id": "c3e5d1f4-feb0-47ea-b5f5-0b997c58becb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/checks/:check_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "checks",
+                        ":check_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5153eefe-61cd-41d0-aea0-ffb503e606d8",
+                          "key": "check_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the current status and scored results for a check."
+                  },
+                  "response": [
+                    {
+                      "id": "1f677f7c-c5ac-4baa-a5cb-6dad5ba3fca8",
+                      "name": "The requested check.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Truora-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/checks/:check_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "checks",
+                            ":check_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "check_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"check_id\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"national_id\": \"<string>\",\n  \"check_type\": \"<string>\",\n  \"country\": \"<string>\",\n  \"creation_date\": \"<dateTime>\",\n  \"status\": \"<string>\",\n  \"score\": \"<float>\"\n}",
+                      "createdAt": "2026-07-28T03:20:17.000Z",
+                      "updatedAt": "2026-07-28T03:20:17.000Z",
+                      "uid": "35240-1f677f7c-c5ac-4baa-a5cb-6dad5ba3fca8"
+                    },
+                    {
+                      "id": "b7c5d017-128e-4cba-b67b-5cb89c0a06fe",
+                      "name": "Resource not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Truora-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/checks/:check_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "checks",
+                            ":check_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "check_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:20:17.000Z",
+                      "updatedAt": "2026-07-28T03:20:17.000Z",
+                      "uid": "35240-b7c5d017-128e-4cba-b67b-5cb89c0a06fe"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:20:17.000Z",
+                  "updatedAt": "2026-07-28T03:20:17.000Z",
+                  "uid": "35240-c3e5d1f4-feb0-47ea-b5f5-0b997c58becb"
+                },
+                {
+                  "name": "Delete a background check",
+                  "id": "2884e660-3451-4743-9562-86524534a279",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/checks/:check_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "checks",
+                        ":check_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "41ea4776-bed3-48c8-9f6d-df5287cb7a1a",
+                          "key": "check_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Removes a background check record from the account."
+                  },
+                  "response": [
+                    {
+                      "id": "cf7efdcd-44d0-460b-83e1-584fb7c49605",
+                      "name": "Check deleted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Truora-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/checks/:check_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "checks",
+                            ":check_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "check_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:20:17.000Z",
+                      "updatedAt": "2026-07-28T03:20:17.000Z",
+                      "uid": "35240-cf7efdcd-44d0-460b-83e1-584fb7c49605"
+                    },
+                    {
+                      "id": "8ac75190-54b4-4f10-ba47-0cfa389c46e5",
+                      "name": "Resource not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Truora-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/checks/:check_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "checks",
+                            ":check_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "check_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:20:17.000Z",
+                      "updatedAt": "2026-07-28T03:20:17.000Z",
+                      "uid": "35240-8ac75190-54b4-4f10-ba47-0cfa389c46e5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:20:17.000Z",
+                  "updatedAt": "2026-07-28T03:20:17.000Z",
+                  "uid": "35240-2884e660-3451-4743-9562-86524534a279"
+                }
+              ],
+              "id": "1580a5fd-a7e5-44c7-8274-a0e074ac1344",
+              "createdAt": "2026-07-28T03:20:16.000Z",
+              "updatedAt": "2026-07-28T03:20:16.000Z",
+              "uid": "35240-1580a5fd-a7e5-44c7-8274-a0e074ac1344"
+            },
+            {
+              "name": "Create a background check",
+              "id": "c90e5c47-93a0-4c96-84b5-31d5b7f4d636",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) National identity number of the subject.",
+                      "key": "national_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ISO country code (CO, CL, MX, PE, BR, SV, CR).",
+                      "key": "country",
+                      "value": "CR"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "type",
+                      "value": "vehicle"
+                    },
+                    {
+                      "key": "force_creation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "user_authorized",
+                      "value": "<boolean>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/checks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "checks"
+                  ]
+                },
+                "description": "Creates a background check for a person, vehicle, or company and queues it to begin collecting information from LatAm public and legal-entity databases. Poll the returned check_id with getCheck to retrieve results."
+              },
+              "response": [
+                {
+                  "id": "cd5205d9-7898-48b0-a1d3-941b3910a8b2",
+                  "name": "Check created and queued.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Truora-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) National identity number of the subject.",
+                          "key": "national_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ISO country code (CO, CL, MX, PE, BR, SV, CR).",
+                          "key": "country",
+                          "value": "CR"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "type",
+                          "value": "vehicle"
+                        },
+                        {
+                          "key": "force_creation",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "key": "user_authorized",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/checks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "checks"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"check_id\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"national_id\": \"<string>\",\n  \"check_type\": \"<string>\",\n  \"country\": \"<string>\",\n  \"creation_date\": \"<dateTime>\",\n  \"status\": \"<string>\",\n  \"score\": \"<float>\"\n}",
+                  "createdAt": "2026-07-28T03:20:17.000Z",
+                  "updatedAt": "2026-07-28T03:20:17.000Z",
+                  "uid": "35240-cd5205d9-7898-48b0-a1d3-941b3910a8b2"
+                },
+                {
+                  "id": "bb4b51d5-f320-4b28-baae-c4af0700a5df",
+                  "name": "Missing or invalid Truora-API-Key.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Truora-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) National identity number of the subject.",
+                          "key": "national_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ISO country code (CO, CL, MX, PE, BR, SV, CR).",
+                          "key": "country",
+                          "value": "CR"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "type",
+                          "value": "vehicle"
+                        },
+                        {
+                          "key": "force_creation",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "key": "user_authorized",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/checks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "checks"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:20:17.000Z",
+                  "updatedAt": "2026-07-28T03:20:17.000Z",
+                  "uid": "35240-bb4b51d5-f320-4b28-baae-c4af0700a5df"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:17.000Z",
+              "updatedAt": "2026-07-28T03:20:17.000Z",
+              "uid": "35240-c90e5c47-93a0-4c96-84b5-31d5b7f4d636"
+            },
+            {
+              "name": "List background checks",
+              "id": "42428835-55b4-45fd-9392-766ae61175d0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/checks?check_type=vehicle&page_size=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "checks"
+                  ],
+                  "query": [
+                    {
+                      "key": "check_type",
+                      "value": "vehicle"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Retrieves the background checks created under the account."
+              },
+              "response": [
+                {
+                  "id": "d80932d0-3a40-490a-ad11-d0085ab196ec",
+                  "name": "A list of checks.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Truora-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/checks?check_type=vehicle&page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "checks"
+                      ],
+                      "query": [
+                        {
+                          "key": "check_type",
+                          "value": "vehicle"
+                        },
+                        {
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"checks\": [\n    {\n      \"check_id\": \"<string>\",\n      \"account_id\": \"<string>\",\n      \"national_id\": \"<string>\",\n      \"check_type\": \"<string>\",\n      \"country\": \"<string>\",\n      \"creation_date\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"score\": \"<float>\"\n    },\n    {\n      \"check_id\": \"<string>\",\n      \"account_id\": \"<string>\",\n      \"national_id\": \"<string>\",\n      \"check_type\": \"<string>\",\n      \"country\": \"<string>\",\n      \"creation_date\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"score\": \"<float>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:20:17.000Z",
+                  "updatedAt": "2026-07-28T03:20:17.000Z",
+                  "uid": "35240-d80932d0-3a40-490a-ad11-d0085ab196ec"
+                },
+                {
+                  "id": "3521b4a8-70cd-4d12-94e2-9f5e3c38289f",
+                  "name": "Missing or invalid Truora-API-Key.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Truora-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/checks?check_type=vehicle&page_size=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "checks"
+                      ],
+                      "query": [
+                        {
+                          "key": "check_type",
+                          "value": "vehicle"
+                        },
+                        {
+                          "key": "page_size",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:20:17.000Z",
+                  "updatedAt": "2026-07-28T03:20:17.000Z",
+                  "uid": "35240-3521b4a8-70cd-4d12-94e2-9f5e3c38289f"
+                }
+              ],
+              "createdAt": "2026-07-28T03:20:17.000Z",
+              "updatedAt": "2026-07-28T03:20:17.000Z",
+              "uid": "35240-42428835-55b4-45fd-9392-766ae61175d0"
+            }
+          ],
+          "id": "355e0232-8f5f-4d2c-9ecd-6f712086780e",
+          "createdAt": "2026-07-28T03:20:16.000Z",
+          "updatedAt": "2026-07-28T03:20:16.000Z",
+          "uid": "35240-355e0232-8f5f-4d2c-9ecd-6f712086780e"
+        }
+      ],
+      "id": "fbe28c29-fa1b-406f-b385-89e6af4974d5",
+      "createdAt": "2026-07-28T03:20:16.000Z",
+      "updatedAt": "2026-07-28T03:20:16.000Z",
+      "uid": "35240-fbe28c29-fa1b-406f-b385-89e6af4974d5"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Truora-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.checks.truora.com"
+    }
+  ]
+}

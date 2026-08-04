@@ -1,0 +1,595 @@
+# Provenance: modeled-from-docs (2026-07-17). Truora publishes no downloadable
+# first-party OpenAPI/Swagger document. This specification was MODELED from the
+# public Truora developer documentation at https://dev.truora.com/docs/ and the
+# per-product guides (Checks, Validators, Digital Identity, Account/API keys).
+# Truora spans four documented production hosts, each modeled below via a
+# per-path `servers` override:
+#   - https://api.checks.truora.com      (Checks / background checks)
+#   - https://api.validations.truora.com (Validators / KYC validations)
+#   - https://api.identity.truora.com    (Digital Identity web + WhatsApp processes)
+#   - https://api.account.truora.com     (Account / API-key + web integration tokens)
+# Authentication is a Truora-API-Key request header (a JWT issued from the account
+# dashboard or the /v1/api-keys endpoint). Region focus: LatAm (CO, CL, MX, PE, BR, SV, CR).
+openapi: 3.0.3
+info:
+  title: Truora API
+  description: >-
+    Truora is a Latin American identity verification, background-check, and
+    conversational-onboarding platform. This modeled specification documents the
+    public REST surface across four production hosts: the Checks API (background
+    checks on people, vehicles, and companies), the Validators API (document,
+    facial, email, and phone validation), the Digital Identity API (web and
+    WhatsApp verification processes), and the Account API (API-key and web
+    integration token management). All requests authenticate with a
+    `Truora-API-Key` header.
+  termsOfService: https://www.truora.com/en/terms-and-conditions
+  contact:
+    name: Truora Developers
+    url: https://dev.truora.com/
+  version: '1.0'
+servers:
+  - url: https://api.checks.truora.com
+    description: Checks API (background checks) - default host
+  - url: https://api.validations.truora.com
+    description: Validators API (KYC validations)
+  - url: https://api.identity.truora.com
+    description: Digital Identity API (web + WhatsApp processes)
+  - url: https://api.account.truora.com
+    description: Account API (API keys and web integration tokens)
+security:
+  - TruoraApiKey: []
+tags:
+  - name: Checks
+    description: Background checks on persons, vehicles, and companies across LatAm.
+  - name: Continuous Monitoring
+    description: Recurring re-checks of previously verified subjects.
+  - name: Validators
+    description: Document, facial, email, and phone validation (KYC).
+  - name: Digital Identity
+    description: Web and WhatsApp identity verification processes.
+  - name: Account
+    description: API-key and web integration token management.
+paths:
+  /v1/checks:
+    servers:
+      - url: https://api.checks.truora.com
+    post:
+      operationId: createCheck
+      tags:
+        - Checks
+      summary: Create a background check
+      description: >-
+        Creates a background check for a person, vehicle, or company and queues
+        it to begin collecting information from LatAm public and legal-entity
+        databases. Poll the returned check_id with getCheck to retrieve results.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateCheckRequest'
+      responses:
+        '200':
+          description: Check created and queued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Check'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: listChecks
+      tags:
+        - Checks
+      summary: List background checks
+      description: Retrieves the background checks created under the account.
+      parameters:
+        - name: check_type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [person, vehicle, company]
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of checks.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  checks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Check'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/checks/{check_id}:
+    servers:
+      - url: https://api.checks.truora.com
+    parameters:
+      - $ref: '#/components/parameters/CheckId'
+    get:
+      operationId: getCheck
+      tags:
+        - Checks
+      summary: Get a background check
+      description: Retrieves the current status and scored results for a check.
+      responses:
+        '200':
+          description: The requested check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Check'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteCheck
+      tags:
+        - Checks
+      summary: Delete a background check
+      description: Removes a background check record from the account.
+      responses:
+        '200':
+          description: Check deleted.
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v1/checks/{check_id}/pdf:
+    servers:
+      - url: https://api.checks.truora.com
+    parameters:
+      - $ref: '#/components/parameters/CheckId'
+    get:
+      operationId: getCheckPdf
+      tags:
+        - Checks
+      summary: Get a check summary PDF
+      description: Returns a PDF summarizing the background-check results.
+      responses:
+        '200':
+          description: PDF document.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+  /v1/checks/{check_id}/variables:
+    servers:
+      - url: https://api.checks.truora.com
+    parameters:
+      - $ref: '#/components/parameters/CheckId'
+    get:
+      operationId: getCheckVariables
+      tags:
+        - Checks
+      summary: Get check variables
+      description: Returns the variables (findings) discovered for a background check.
+      responses:
+        '200':
+          description: Variables found for the check.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/checks/{check_id}/attachments:
+    servers:
+      - url: https://api.checks.truora.com
+    parameters:
+      - $ref: '#/components/parameters/CheckId'
+    get:
+      operationId: getCheckAttachments
+      tags:
+        - Checks
+      summary: Get check attachments
+      description: >-
+        Returns links to the certificates and supporting documents found for a
+        background check.
+      responses:
+        '200':
+          description: Attachment links.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/continuous-check:
+    servers:
+      - url: https://api.checks.truora.com
+    post:
+      operationId: createContinuousCheck
+      tags:
+        - Continuous Monitoring
+      summary: Create a continuous check
+      description: Sets up recurring background monitoring for a subject.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                national_id:
+                  type: string
+                country:
+                  type: string
+                type:
+                  type: string
+                  enum: [person, vehicle, company]
+      responses:
+        '200':
+          description: Continuous check created.
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      operationId: listContinuousChecks
+      tags:
+        - Continuous Monitoring
+      summary: List continuous checks
+      description: Retrieves the active continuous checks configured on the account.
+      responses:
+        '200':
+          description: A list of continuous checks.
+          content:
+            application/json:
+              schema:
+                type: object
+  /v1/validations:
+    servers:
+      - url: https://api.validations.truora.com
+    post:
+      operationId: createValidation
+      tags:
+        - Validators
+      summary: Create a validation
+      description: >-
+        Creates a KYC validation (document, facial, email, or phone). For
+        document and face validations the response includes signed upload URLs
+        (front_url, reverse_url) for submitting the subject's media.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateValidationRequest'
+      responses:
+        '200':
+          description: Validation created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Validation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/validations/{validation_id}:
+    servers:
+      - url: https://api.validations.truora.com
+    parameters:
+      - name: validation_id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getValidation
+      tags:
+        - Validators
+      summary: Get a validation
+      description: >-
+        Retrieves the status and extracted details (OCR data, match results,
+        background info) for a validation.
+      parameters:
+        - name: show_details
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: When true, includes extracted document data and image links.
+      responses:
+        '200':
+          description: The requested validation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Validation'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v1/processes/{process_id}:
+    servers:
+      - url: https://api.identity.truora.com
+    parameters:
+      - $ref: '#/components/parameters/ProcessId'
+    get:
+      operationId: getProcess
+      tags:
+        - Digital Identity
+      summary: Get a digital identity process
+      description: >-
+        Retrieves the state of a Digital Identity verification process created
+        via a web integration token or a WhatsApp conversational flow.
+      responses:
+        '200':
+          description: The requested process.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v1/processes/{process_id}/result:
+    servers:
+      - url: https://api.identity.truora.com
+    parameters:
+      - $ref: '#/components/parameters/ProcessId'
+    get:
+      operationId: getProcessResult
+      tags:
+        - Digital Identity
+      summary: Get digital identity process results
+      description: >-
+        Returns the consolidated verification result (scored decision plus the
+        underlying document, face, and liveness validations) for a completed
+        Digital Identity or WhatsApp verification process.
+      responses:
+        '200':
+          description: The process result.
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v1/api-keys:
+    servers:
+      - url: https://api.account.truora.com
+    post:
+      operationId: createApiKey
+      tags:
+        - Account
+      summary: Create an API key or web integration token
+      description: >-
+        Issues a Truora API key. With key_type=backend the returned JWT
+        authenticates server-to-server API calls; with key_type=web it issues a
+        short-lived web integration token used to launch a Digital Identity
+        process in the browser or WhatsApp flow.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateApiKeyRequest'
+      responses:
+        '200':
+          description: API key created. The JWT is returned once.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: listApiKeys
+      tags:
+        - Account
+      summary: List API keys
+      description: Retrieves the API keys registered on the account.
+      responses:
+        '200':
+          description: A list of API keys.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  api_keys:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiKey'
+  /v1/api-keys/{api_key_id}:
+    servers:
+      - url: https://api.account.truora.com
+    parameters:
+      - name: api_key_id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      operationId: deleteApiKey
+      tags:
+        - Account
+      summary: Delete (revoke) an API key
+      description: Revokes an API key so it can no longer authenticate requests.
+      responses:
+        '200':
+          description: API key revoked.
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    TruoraApiKey:
+      type: apiKey
+      in: header
+      name: Truora-API-Key
+      description: >-
+        A JWT issued from the Truora dashboard or the /v1/api-keys endpoint,
+        sent in the Truora-API-Key request header on every call.
+  parameters:
+    CheckId:
+      name: check_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ProcessId:
+      name: process_id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid Truora-API-Key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    CreateCheckRequest:
+      type: object
+      required:
+        - national_id
+        - country
+        - type
+      properties:
+        national_id:
+          type: string
+          description: National identity number of the subject.
+        country:
+          type: string
+          description: ISO country code (CO, CL, MX, PE, BR, SV, CR).
+          enum: [CO, CL, MX, PE, BR, SV, CR, ALL]
+        type:
+          type: string
+          enum: [person, vehicle, company]
+        force_creation:
+          type: boolean
+        user_authorized:
+          type: boolean
+    Check:
+      type: object
+      properties:
+        check_id:
+          type: string
+        account_id:
+          type: string
+        national_id:
+          type: string
+        check_type:
+          type: string
+        country:
+          type: string
+        creation_date:
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: e.g. not_started, in_progress, completed, error, delayed.
+        score:
+          type: number
+          format: float
+          description: Risk score between 0 and 1.
+    CreateValidationRequest:
+      type: object
+      required:
+        - type
+        - country
+        - user_authorized
+      properties:
+        type:
+          type: string
+          enum:
+            - document-validation
+            - face-recognition
+            - face-revalidation
+            - email
+            - phone
+            - electronic-signature
+        country:
+          type: string
+          enum: [CO, CL, MX, PE, BR, SV, ALL]
+        document_type:
+          type: string
+          description: e.g. national-id, passport, foreign-id, driver-license.
+        user_authorized:
+          type: boolean
+        account_id:
+          type: string
+        timeout:
+          type: integer
+    Validation:
+      type: object
+      properties:
+        validation_id:
+          type: string
+        account_id:
+          type: string
+        validation_status:
+          type: string
+          description: e.g. pending, success, failure.
+        creation_date:
+          type: string
+          format: date-time
+        front_url:
+          type: string
+          description: Signed URL for uploading the front of a document.
+        reverse_url:
+          type: string
+          description: Signed URL for uploading the back of a document.
+        details:
+          type: object
+          description: Extracted OCR data, match results, and background info.
+    Process:
+      type: object
+      properties:
+        process_id:
+          type: string
+        account_id:
+          type: string
+        status:
+          type: string
+        creation_date:
+          type: string
+          format: date-time
+        flow_id:
+          type: string
+    CreateApiKeyRequest:
+      type: object
+      required:
+        - key_type
+      properties:
+        key_type:
+          type: string
+          enum: [backend, web, sdk]
+        grant:
+          type: string
+          description: Product grant, e.g. digital-identity, signals, all.
+        api_key_version:
+          type: string
+          enum: ['1', '2']
+        country:
+          type: string
+    ApiKey:
+      type: object
+      properties:
+        api_key_id:
+          type: string
+        api_key:
+          type: string
+          description: The JWT credential. Returned once at creation time.
+        key_type:
+          type: string
+        grant:
+          type: string
+        creation_date:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
