@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truora Account Checks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Truora-API-Key",
+      "value": "{{Truora-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Checks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List background checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.checks.truora.com/v1/checks",
+            "params": [
+              {
+                "name": "check_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves the background checks created under the account."
+        },
+        {
+          "info": {
+            "name": "Create a background check",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.checks.truora.com/v1/checks",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a background check for a person, vehicle, or company and queues it to begin collecting information from LatAm public and legal-entity databases. Poll the returned check_id with getCheck to retrieve results."
+        },
+        {
+          "info": {
+            "name": "Get a background check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.checks.truora.com/v1/checks/:check_id",
+            "params": [
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the current status and scored results for a check."
+        },
+        {
+          "info": {
+            "name": "Delete a background check",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.checks.truora.com/v1/checks/:check_id",
+            "params": [
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a background check record from the account."
+        },
+        {
+          "info": {
+            "name": "Get a check summary PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.checks.truora.com/v1/checks/:check_id/pdf",
+            "params": [
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a PDF summarizing the background-check results."
+        },
+        {
+          "info": {
+            "name": "Get check variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.checks.truora.com/v1/checks/:check_id/variables",
+            "params": [
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the variables (findings) discovered for a background check."
+        },
+        {
+          "info": {
+            "name": "Get check attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.checks.truora.com/v1/checks/:check_id/attachments",
+            "params": [
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns links to the certificates and supporting documents found for a background check."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

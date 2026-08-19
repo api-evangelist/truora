@@ -1,0 +1,494 @@
+{
+  "item": [
+    {
+      "id": "053ebda7-7c5f-4fe1-b5c7-3e8d3a99a4bb",
+      "name": "Validators",
+      "description": {
+        "content": "Document, facial, email, and phone validation (KYC).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5f0969f7-6ac6-4b05-b4ee-88eb688c8336",
+          "name": "Create a validation",
+          "request": {
+            "name": "Create a validation",
+            "description": {
+              "content": "Creates a KYC validation (document, facial, email, or phone). For document and face validations the response includes signed upload URLs (front_url, reverse_url) for submitting the subject's media.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "validations"
+              ],
+              "host": [
+                "{{v1-validations-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "user_authorized",
+                  "value": "<boolean>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "document_type",
+                  "value": "<string>",
+                  "description": "e.g. national-id, passport, foreign-id, driver-license."
+                },
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b5ae59fc-4766-4026-a2d8-38594011deea",
+              "name": "Validation created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "validations"
+                  ],
+                  "host": [
+                    "{{v1-validations-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "user_authorized",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "e.g. national-id, passport, foreign-id, driver-license.",
+                        "type": "text/plain"
+                      },
+                      "key": "document_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "timeout",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"validation_id\": \"string\",\n  \"account_id\": \"string\",\n  \"validation_status\": \"string\",\n  \"creation_date\": \"1968-06-13T18:24:57.984Z\",\n  \"front_url\": \"string\",\n  \"reverse_url\": \"string\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9512e85f-f92d-44ca-b064-f9bc4e685409",
+              "name": "Missing or invalid Truora-API-Key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "validations"
+                  ],
+                  "host": [
+                    "{{v1-validations-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "user_authorized",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "e.g. national-id, passport, foreign-id, driver-license.",
+                        "type": "text/plain"
+                      },
+                      "key": "document_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "timeout",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5585,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "401f0ae4-34c5-4b0f-b3ae-d0304f751ab0",
+          "name": "Get a validation",
+          "request": {
+            "name": "Get a validation",
+            "description": {
+              "content": "Retrieves the status and extracted details (OCR data, match results, background info) for a validation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "validations",
+                ":validation_id"
+              ],
+              "host": [
+                "{{v1-validations-validation_id-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "show_details",
+                  "value": "<boolean>",
+                  "description": "When true, includes extracted document data and image links."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "validation_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6e33c89-cb6d-4d14-993a-d73ad2f0f0c4",
+              "name": "The requested validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "validations",
+                    ":validation_id"
+                  ],
+                  "host": [
+                    "{{v1-validations-validation_id-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show_details",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validation_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"validation_id\": \"string\",\n  \"account_id\": \"string\",\n  \"validation_status\": \"string\",\n  \"creation_date\": \"1968-06-13T18:24:57.984Z\",\n  \"front_url\": \"string\",\n  \"reverse_url\": \"string\",\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7f312af-98cb-44d3-9b15-169ff3019c8b",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "validations",
+                    ":validation_id"
+                  ],
+                  "host": [
+                    "{{v1-validations-validation_id-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "show_details",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "validation_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5585,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.checks.truora.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.validations.truora.com",
+      "key": "v1-validations-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.validations.truora.com",
+      "key": "v1-validations-validation_id-Url"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Truora-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "87e7e51a-8f89-40e7-a5a1-36fa189cf01c",
+    "name": "Truora Account Validators API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Truora is a Latin American identity verification, background-check, and conversational-onboarding platform. This modeled specification documents the public REST surface across four production hosts: the Checks API (background checks on people, vehicles, and companies), the Validators API (document, facial, email, and phone validation), the Digital Identity API (web and WhatsApp verification processes), and the Account API (API-key and web integration token management). All requests authenticate with a `Truora-API-Key` header.\n\nContact Support:\n Name: Truora Developers",
+      "type": "text/plain"
+    }
+  }
+}

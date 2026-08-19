@@ -1,0 +1,505 @@
+{
+  "item": [
+    {
+      "id": "6a909903-e61a-42f6-b29a-dbe32095a506",
+      "name": "Account",
+      "description": {
+        "content": "API-key and web integration token management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e29b9c1-f2f8-49a4-b16c-550fd6398658",
+          "name": "Create an API key or web integration token",
+          "request": {
+            "name": "Create an API key or web integration token",
+            "description": {
+              "content": "Issues a Truora API key. With key_type=backend the returned JWT authenticates server-to-server API calls; with key_type=web it issues a short-lived web integration token used to launch a Digital Identity process in the browser or WhatsApp flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "api-keys"
+              ],
+              "host": [
+                "{{v1-api-keys-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "key_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "grant",
+                  "value": "<string>",
+                  "description": "Product grant, e.g. digital-identity, signals, all."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key_version",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "26b98c30-c9b9-487a-84d1-8d9d570b0b03",
+              "name": "API key created. The JWT is returned once.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{v1-api-keys-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "key_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Product grant, e.g. digital-identity, signals, all.",
+                        "type": "text/plain"
+                      },
+                      "key": "grant",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "api_key_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"api_key_id\": \"string\",\n  \"api_key\": \"string\",\n  \"key_type\": \"string\",\n  \"grant\": \"string\",\n  \"creation_date\": \"1953-03-11T20:46:26.402Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72ec4d9a-023f-49bf-a267-35bd3f84b2e6",
+              "name": "Missing or invalid Truora-API-Key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{v1-api-keys-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "key_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Product grant, e.g. digital-identity, signals, all.",
+                        "type": "text/plain"
+                      },
+                      "key": "grant",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "api_key_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9350,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f6a7564-81fb-4ccf-b491-8e333ef9ef02",
+          "name": "List API keys",
+          "request": {
+            "name": "List API keys",
+            "description": {
+              "content": "Retrieves the API keys registered on the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "api-keys"
+              ],
+              "host": [
+                "{{v1-api-keys-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3cd3bdb6-d787-4af4-bf16-902646c9730c",
+              "name": "A list of API keys.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{v1-api-keys-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"api_keys\": [\n    {\n      \"api_key_id\": \"string\",\n      \"api_key\": \"string\",\n      \"key_type\": \"string\",\n      \"grant\": \"string\",\n      \"creation_date\": \"1971-12-25T12:29:39.465Z\"\n    },\n    {\n      \"api_key_id\": \"string\",\n      \"api_key\": \"string\",\n      \"key_type\": \"string\",\n      \"grant\": \"string\",\n      \"creation_date\": \"1957-03-13T00:41:33.155Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "990b03f4-91e0-4c0e-ba56-f88ae613745c",
+          "name": "Delete (revoke) an API key",
+          "request": {
+            "name": "Delete (revoke) an API key",
+            "description": {
+              "content": "Revokes an API key so it can no longer authenticate requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "api-keys",
+                ":api_key_id"
+              ],
+              "host": [
+                "{{v1-api-keys-api_key_id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api_key_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71965d33-4800-4960-babe-7eecbc206795",
+              "name": "API key revoked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api-keys",
+                    ":api_key_id"
+                  ],
+                  "host": [
+                    "{{v1-api-keys-api_key_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api_key_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7603d4e9-81c1-4e99-b3b1-064bbed2f77e",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "api-keys",
+                    ":api_key_id"
+                  ],
+                  "host": [
+                    "{{v1-api-keys-api_key_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api_key_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9350,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.checks.truora.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.account.truora.com",
+      "key": "v1-api-keys-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.account.truora.com",
+      "key": "v1-api-keys-api_key_id-Url"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Truora-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9e7b102c-5edd-435e-9eeb-3028f1b5bcbf",
+    "name": "Truora Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Truora is a Latin American identity verification, background-check, and conversational-onboarding platform. This modeled specification documents the public REST surface across four production hosts: the Checks API (background checks on people, vehicles, and companies), the Validators API (document, facial, email, and phone validation), the Digital Identity API (web and WhatsApp verification processes), and the Account API (API-key and web integration token management). All requests authenticate with a `Truora-API-Key` header.\n\nContact Support:\n Name: Truora Developers",
+      "type": "text/plain"
+    }
+  }
+}

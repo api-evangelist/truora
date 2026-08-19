@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truora Account Continuous Monitoring API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Truora-API-Key",
+      "value": "{{Truora-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Continuous Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List continuous checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.checks.truora.com/v1/continuous-check"
+          },
+          "docs": "Retrieves the active continuous checks configured on the account."
+        },
+        {
+          "info": {
+            "name": "Create a continuous check",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.checks.truora.com/v1/continuous-check",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "national_id",
+                  "value": ""
+                },
+                {
+                  "name": "country",
+                  "value": ""
+                },
+                {
+                  "name": "type",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Sets up recurring background monitoring for a subject."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

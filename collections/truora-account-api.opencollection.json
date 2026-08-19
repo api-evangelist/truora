@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truora Account API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Truora-API-Key",
+      "value": "{{Truora-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.checks.truora.com/v1/api-keys"
+          },
+          "docs": "Retrieves the API keys registered on the account."
+        },
+        {
+          "info": {
+            "name": "Create an API key or web integration token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.checks.truora.com/v1/api-keys",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Issues a Truora API key. With key_type=backend the returned JWT authenticates server-to-server API calls; with key_type=web it issues a short-lived web integration token used to launch a Digital Identity process in the browser or WhatsApp flow."
+        },
+        {
+          "info": {
+            "name": "Delete (revoke) an API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.checks.truora.com/v1/api-keys/:api_key_id",
+            "params": [
+              {
+                "name": "api_key_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Revokes an API key so it can no longer authenticate requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

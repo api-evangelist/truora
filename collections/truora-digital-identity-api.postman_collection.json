@@ -1,0 +1,364 @@
+{
+  "item": [
+    {
+      "id": "2ec90768-db3f-4da2-811a-6d1cdc8df82e",
+      "name": "Digital Identity",
+      "description": {
+        "content": "Web and WhatsApp identity verification processes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad43e3d8-07d5-49e9-a82b-5f89a5d6e786",
+          "name": "Get a digital identity process",
+          "request": {
+            "name": "Get a digital identity process",
+            "description": {
+              "content": "Retrieves the state of a Digital Identity verification process created via a web integration token or a WhatsApp conversational flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "processes",
+                ":process_id"
+              ],
+              "host": [
+                "{{v1-processes-process_id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "process_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e826f5d7-f462-43c5-a8d9-af6293020340",
+              "name": "The requested process.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "processes",
+                    ":process_id"
+                  ],
+                  "host": [
+                    "{{v1-processes-process_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "process_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"process_id\": \"string\",\n  \"account_id\": \"string\",\n  \"status\": \"string\",\n  \"creation_date\": \"1967-10-29T08:59:55.058Z\",\n  \"flow_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d98dea0-21e4-43e8-9c47-ff9843a81d84",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "processes",
+                    ":process_id"
+                  ],
+                  "host": [
+                    "{{v1-processes-process_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "process_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1295,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3a59ac9-8f23-4406-b627-543fa2f65efc",
+          "name": "Get digital identity process results",
+          "request": {
+            "name": "Get digital identity process results",
+            "description": {
+              "content": "Returns the consolidated verification result (scored decision plus the underlying document, face, and liveness validations) for a completed Digital Identity or WhatsApp verification process.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "processes",
+                ":process_id",
+                "result"
+              ],
+              "host": [
+                "{{v1-processes-process_id-result-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "process_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98263869-324c-4ee7-801a-5c62ce992b17",
+              "name": "The process result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "processes",
+                    ":process_id",
+                    "result"
+                  ],
+                  "host": [
+                    "{{v1-processes-process_id-result-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "process_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2968cd99-aaba-45d4-afc1-8dc54d86a77c",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "processes",
+                    ":process_id",
+                    "result"
+                  ],
+                  "host": [
+                    "{{v1-processes-process_id-result-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "process_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Truora-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1295,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.checks.truora.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.identity.truora.com",
+      "key": "v1-processes-process_id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.identity.truora.com",
+      "key": "v1-processes-process_id-result-Url"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Truora-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f98275ef-9be4-4d4a-9d88-8d66d49fd238",
+    "name": "Truora Account Digital Identity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Truora is a Latin American identity verification, background-check, and conversational-onboarding platform. This modeled specification documents the public REST surface across four production hosts: the Checks API (background checks on people, vehicles, and companies), the Validators API (document, facial, email, and phone validation), the Digital Identity API (web and WhatsApp verification processes), and the Account API (API-key and web integration token management). All requests authenticate with a `Truora-API-Key` header.\n\nContact Support:\n Name: Truora Developers",
+      "type": "text/plain"
+    }
+  }
+}

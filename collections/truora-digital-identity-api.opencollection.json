@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truora Account Digital Identity API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Truora-API-Key",
+      "value": "{{Truora-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Digital Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a digital identity process",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.checks.truora.com/v1/processes/:process_id",
+            "params": [
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the state of a Digital Identity verification process created via a web integration token or a WhatsApp conversational flow."
+        },
+        {
+          "info": {
+            "name": "Get digital identity process results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.checks.truora.com/v1/processes/:process_id/result",
+            "params": [
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the consolidated verification result (scored decision plus the underlying document, face, and liveness validations) for a completed Digital Identity or WhatsApp verification process."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

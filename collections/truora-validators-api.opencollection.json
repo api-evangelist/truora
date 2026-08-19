@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Truora Account Validators API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Truora-API-Key",
+      "value": "{{Truora-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Validators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.checks.truora.com/v1/validations",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a KYC validation (document, facial, email, or phone). For document and face validations the response includes signed upload URLs (front_url, reverse_url) for submitting the subject's media."
+        },
+        {
+          "info": {
+            "name": "Get a validation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.checks.truora.com/v1/validations/:validation_id",
+            "params": [
+              {
+                "name": "validation_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "show_details",
+                "value": "",
+                "type": "query",
+                "description": "When true, includes extracted document data and image links."
+              }
+            ]
+          },
+          "docs": "Retrieves the status and extracted details (OCR data, match results, background info) for a validation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
