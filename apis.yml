@@ -7,6 +7,18 @@ description: Truora is a Latin American identity verification and fraud-preventi
   across LatAm, validate documents/faces/email/phone for KYC, and orchestrate web
   and WhatsApp conversational onboarding flows. All requests authenticate with a
   Truora-API-Key header.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
