@@ -38,6 +38,13 @@ tags:
 - KYC
 - Background Checks
 - Fraud Prevention
+- Latin America
+- WhatsApp
+tags_raw:
+- Identity Verification
+- KYC
+- Background Checks
+- Fraud Prevention
 - LatAm
 - WhatsApp
 created: '2026-07-17'
@@ -138,6 +145,8 @@ apis:
   humanURL: https://dev.truora.com/checks/create/
   baseURL: https://api.checks.truora.com
   tags:
+  - Validator
+  tags_raw:
   - Validators
   properties:
   - type: OpenAPI
