@@ -1,11 +1,7 @@
 {
   "provider": "truora",
   "sources": [
-    "truora-account-api-openapi.yml",
-    "truora-checks-api-openapi.yml",
-    "truora-continuous-monitoring-api-openapi.yml",
-    "truora-digital-identity-api-openapi.yml",
-    "truora-validators-api-openapi.yml"
+    "_original/truora-openapi.yml"
   ],
   "outputs": [
     "truora-account-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "truora-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "truora-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truora-checks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truora-continuous-monitoring-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truora-digital-identity-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "truora-validators-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

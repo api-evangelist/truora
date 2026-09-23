@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Truora Account API
-  description: 'Truora is a Latin American identity verification, background-check, and conversational-onboarding platform. This modeled specification documents the public REST surface across four production hosts: the Checks API (background checks on people, vehicles, and companies), the Validators API (document, facial, email, and phone validation), the Digital Identity API (web and WhatsApp verification processes), and the Account API (API-key and web integration token management). All requests authenticate with a `Truora-API-Key` header.'
+  description: Truora is a Latin American identity verification, background-check, and conversational-onboarding platform.
   termsOfService: https://www.truora.com/en/terms-and-conditions
   contact:
     name: Truora Developers
@@ -85,41 +85,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid Truora-API-Key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    CreateApiKeyRequest:
-      type: object
-      required:
-      - key_type
-      properties:
-        key_type:
-          type: string
-          enum:
-          - backend
-          - web
-          - sdk
-        grant:
-          type: string
-          description: Product grant, e.g. digital-identity, signals, all.
-        api_key_version:
-          type: string
-          enum:
-          - '1'
-          - '2'
-        country:
-          type: string
     ApiKey:
       type: object
       properties:
@@ -142,6 +108,40 @@ components:
           type: integer
         message:
           type: string
+    CreateApiKeyRequest:
+      type: object
+      required:
+      - key_type
+      properties:
+        key_type:
+          type: string
+          enum:
+          - backend
+          - web
+          - sdk
+        grant:
+          type: string
+          description: Product grant, e.g. digital-identity, signals, all.
+        api_key_version:
+          type: string
+          enum:
+          - '1'
+          - '2'
+        country:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid Truora-API-Key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     TruoraApiKey:
       type: apiKey

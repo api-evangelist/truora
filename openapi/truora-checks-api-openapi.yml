@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Truora Account Checks API
-  description: 'Truora is a Latin American identity verification, background-check, and conversational-onboarding platform. This modeled specification documents the public REST surface across four production hosts: the Checks API (background checks on people, vehicles, and companies), the Validators API (document, facial, email, and phone validation), the Digital Identity API (web and WhatsApp verification processes), and the Account API (API-key and web integration token management). All requests authenticate with a `Truora-API-Key` header.'
+  title: Truora Checks API
+  description: Truora is a Latin American identity verification, background-check, and conversational-onboarding platform.
   termsOfService: https://www.truora.com/en/terms-and-conditions
   contact:
     name: Truora Developers
@@ -192,6 +192,13 @@ components:
           type: number
           format: float
           description: Risk score between 0 and 1.
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     CreateCheckRequest:
       type: object
       required:
@@ -224,13 +231,13 @@ components:
           type: boolean
         user_authorized:
           type: boolean
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
+  parameters:
+    CheckId:
+      name: check_id
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Missing or invalid Truora-API-Key.
@@ -244,13 +251,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    CheckId:
-      name: check_id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     TruoraApiKey:
       type: apiKey
