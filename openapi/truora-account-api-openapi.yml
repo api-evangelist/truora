@@ -85,6 +85,19 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid Truora-API-Key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     ApiKey:
       type: object
@@ -101,13 +114,6 @@ components:
         creation_date:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     CreateApiKeyRequest:
       type: object
       required:
@@ -129,19 +135,13 @@ components:
           - '2'
         country:
           type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid Truora-API-Key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
   securitySchemes:
     TruoraApiKey:
       type: apiKey

@@ -168,37 +168,20 @@ paths:
               schema:
                 type: object
 components:
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid Truora-API-Key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Check:
-      type: object
-      properties:
-        check_id:
-          type: string
-        account_id:
-          type: string
-        national_id:
-          type: string
-        check_type:
-          type: string
-        country:
-          type: string
-        creation_date:
-          type: string
-          format: date-time
-        status:
-          type: string
-          description: e.g. not_started, in_progress, completed, error, delayed.
-        score:
-          type: number
-          format: float
-          description: Risk score between 0 and 1.
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     CreateCheckRequest:
       type: object
       required:
@@ -231,6 +214,36 @@ components:
           type: boolean
         user_authorized:
           type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Check:
+      type: object
+      properties:
+        check_id:
+          type: string
+        account_id:
+          type: string
+        national_id:
+          type: string
+        check_type:
+          type: string
+        country:
+          type: string
+        creation_date:
+          type: string
+          format: date-time
+        status:
+          type: string
+          description: e.g. not_started, in_progress, completed, error, delayed.
+        score:
+          type: number
+          format: float
+          description: Risk score between 0 and 1.
   parameters:
     CheckId:
       name: check_id
@@ -238,19 +251,6 @@ components:
       required: true
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid Truora-API-Key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     TruoraApiKey:
       type: apiKey
