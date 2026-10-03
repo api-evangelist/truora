@@ -168,6 +168,13 @@ paths:
               schema:
                 type: object
 components:
+  parameters:
+    CheckId:
+      name: check_id
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
     NotFound:
       description: Resource not found.
@@ -244,13 +251,6 @@ components:
           type: number
           format: float
           description: Risk score between 0 and 1.
-  parameters:
-    CheckId:
-      name: check_id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     TruoraApiKey:
       type: apiKey

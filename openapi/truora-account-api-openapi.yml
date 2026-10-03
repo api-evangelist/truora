@@ -99,6 +99,13 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     ApiKey:
       type: object
       properties:
@@ -134,13 +141,6 @@ components:
           - '1'
           - '2'
         country:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
           type: string
   securitySchemes:
     TruoraApiKey:

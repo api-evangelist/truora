@@ -92,6 +92,28 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Validation:
+      type: object
+      properties:
+        validation_id:
+          type: string
+        account_id:
+          type: string
+        validation_status:
+          type: string
+          description: e.g. pending, success, failure.
+        creation_date:
+          type: string
+          format: date-time
+        front_url:
+          type: string
+          description: Signed URL for uploading the front of a document.
+        reverse_url:
+          type: string
+          description: Signed URL for uploading the back of a document.
+        details:
+          type: object
+          description: Extracted OCR data, match results, and background info.
     CreateValidationRequest:
       type: object
       required:
@@ -127,28 +149,6 @@ components:
           type: string
         timeout:
           type: integer
-    Validation:
-      type: object
-      properties:
-        validation_id:
-          type: string
-        account_id:
-          type: string
-        validation_status:
-          type: string
-          description: e.g. pending, success, failure.
-        creation_date:
-          type: string
-          format: date-time
-        front_url:
-          type: string
-          description: Signed URL for uploading the front of a document.
-        reverse_url:
-          type: string
-          description: Signed URL for uploading the back of a document.
-        details:
-          type: object
-          description: Extracted OCR data, match results, and background info.
     Error:
       type: object
       properties:
