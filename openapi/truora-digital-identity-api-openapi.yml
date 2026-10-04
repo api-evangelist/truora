@@ -63,13 +63,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    ProcessId:
-      name: process_id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     Process:
       type: object
@@ -92,6 +85,13 @@ components:
           type: integer
         message:
           type: string
+  parameters:
+    ProcessId:
+      name: process_id
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
     NotFound:
       description: Resource not found.
