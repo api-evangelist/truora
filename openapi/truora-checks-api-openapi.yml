@@ -239,14 +239,14 @@ components:
       schema:
         type: string
   responses:
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Missing or invalid Truora-API-Key.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid Truora-API-Key.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:

@@ -86,6 +86,27 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    CreateApiKeyRequest:
+      type: object
+      required:
+      - key_type
+      properties:
+        key_type:
+          type: string
+          enum:
+          - backend
+          - web
+          - sdk
+        grant:
+          type: string
+          description: Product grant, e.g. digital-identity, signals, all.
+        api_key_version:
+          type: string
+          enum:
+          - '1'
+          - '2'
+        country:
+          type: string
     Error:
       type: object
       properties:
@@ -108,36 +129,15 @@ components:
         creation_date:
           type: string
           format: date-time
-    CreateApiKeyRequest:
-      type: object
-      required:
-      - key_type
-      properties:
-        key_type:
-          type: string
-          enum:
-          - backend
-          - web
-          - sdk
-        grant:
-          type: string
-          description: Product grant, e.g. digital-identity, signals, all.
-        api_key_version:
-          type: string
-          enum:
-          - '1'
-          - '2'
-        country:
-          type: string
   responses:
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Missing or invalid Truora-API-Key.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid Truora-API-Key.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
