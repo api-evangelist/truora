@@ -2,6 +2,7 @@ generated: '2026-10-13'
 method: searched
 checked:
 - https://aws.amazon.com/marketplace/
+- hubspot/integrations/hubspot-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -22,3 +23,22 @@ edges:
   seller_name: Truora Inc
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: HubSpot (own)
+  partner: hubspot
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/whatsapp-agent-redirection-by-truora-862363
+  mirror_of: hubspot/integrations/hubspot-integration-edges.yml
+  apps:
+  - WhatsApp integration by Truora
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: LIVE_CHAT
+source:
+- hubspot/integrations/hubspot-integration-edges.yml
