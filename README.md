@@ -1,4 +1,4 @@
-# Truora (truora)
+# Truora
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,118 +64,167 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Truora is a Latin American identity verification and fraud-prevention platform. Its REST APIs run background checks on people, vehicles, and companies across LatAm, validate documents/faces/email/phone for KYC, and orchestrate web and WhatsApp conversational onboarding flows. All requests authenticate with a `Truora-API-Key` header.
+Truora is a Latin American identity verification and fraud-prevention platform. Its REST APIs run background checks on people, vehicles, and companies across LatAm, validate documents/faces/email/phone for KYC, and orchestrate web and WhatsApp conversational onboarding flows. All requests authenticate with a Truora-API-Key header.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/truora/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/truora/refs/heads/main/apis.yml)
+**Areas:** Identity Verification · KYC · Background Checks · Fraud Prevention · Latin America · WhatsApp
 
-## Tags
+## Truora on APIs.io
 
-- Identity Verification
-- KYC
-- Background Checks
-- Fraud Prevention
-- LatAm
-- WhatsApp
+Everything profiled for Truora is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/truora/](https://apis.io/providers/truora/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-07-17
-- **Modified:** 2026-07-17
+- [Truora Account API](https://apis.io/apis/truora/truora-account-api/) — API-key and web integration token management.
+- [Truora Checks API](https://apis.io/apis/truora/truora-checks-api/) — Background checks on persons, vehicles, and companies across LatAm.
+- [Truora Continuous Monitoring API](https://apis.io/apis/truora/truora-continuous-monitoring-api/) — Recurring re-checks of previously verified subjects.
+- [Truora Digital Identity API](https://apis.io/apis/truora/truora-digital-identity-api/) — Web and WhatsApp identity verification processes.
+- [Truora Validators API](https://apis.io/apis/truora/truora-validators-api/) — Document, facial, email, and phone validation (KYC).
 
-## APIs
+### Published properties
 
-### Truora Checks API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Runs full background checks on persons, vehicles, and companies across LatAm databases (CO, CL, MX, PE, BR, SV, CR), returning identity, criminal, international, and professional-background variables plus a risk score, PDF summary, attachments, and continuous monitoring.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://dev.truora.com/checks/create/](https://dev.truora.com/checks/create/)
-- **Base URL:** `https://api.checks.truora.com`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Truora Webhooks](https://apis.io/asyncapis/truora/truora-webhooks/)
 
-- Background Checks
-- KYC
-- Fraud Prevention
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://dev.truora.com/checks/create/)
-- [API Reference](https://dev.truora.com/docs/)
-- [OpenAPI](openapi/truora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/truora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [truora](https://apis.io/servers/truora/truora/)
 
-### Truora Validators API
+#### Agentic access (1)
 
-Creates KYC validations — document verification, facial recognition and re-validation, email, phone, and electronic signature — returning signed upload URLs for subject media and extracted OCR/match details on retrieval.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://dev.truora.com/validators/document_validation_api/](https://dev.truora.com/validators/document_validation_api/)
-- **Base URL:** `https://api.validations.truora.com`
+- [Truora Agentic Access](https://apis.io/agentic-access/truora/truora-agentic-access/)
 
-#### Tags
+#### Collections (10)
 
-- Document Validation
-- Facial Recognition
-- KYC
+Postman and Open Collection request collections.
 
-#### Properties
+- [Truora Account API](https://apis.io/collections/truora/open-truora-account-api/)
+- [Truora Account Checks API](https://apis.io/collections/truora/open-truora-checks-api/)
+- [Truora Account Continuous Monitoring API](https://apis.io/collections/truora/open-truora-continuous-monitoring-api/)
+- [Truora Account Digital Identity API](https://apis.io/collections/truora/open-truora-digital-identity-api/)
+- [Truora Account Validators API](https://apis.io/collections/truora/open-truora-validators-api/)
+- [Truora Account API](https://apis.io/collections/truora/postman-truora-account-api/)
+- [Truora Account Checks API](https://apis.io/collections/truora/postman-truora-checks-api/)
+- [Truora Account Continuous Monitoring API](https://apis.io/collections/truora/postman-truora-continuous-monitoring-api/)
+- [Truora Account Digital Identity API](https://apis.io/collections/truora/postman-truora-digital-identity-api/)
+- [Truora Account Validators API](https://apis.io/collections/truora/postman-truora-validators-api/)
 
-- [Documentation](https://dev.truora.com/validators/document_validation_api/)
-- [API Reference](https://dev.truora.com/docs/)
-- [OpenAPI](openapi/truora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/truora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+#### Overlays (1)
 
-### Truora Digital Identity API
+OpenAPI overlays, including conversational phrasing for each operation.
 
-Retrieves the state and consolidated results of Digital Identity verification processes launched through hosted web flows or WhatsApp conversational onboarding, combining document, face, and liveness checks into a single scored decision.
+- [Truora Overlay](https://apis.io/overlays/truora/truora-overlay/)
 
-- **Human URL:** [https://dev.truora.com/digital-identity/get_results/](https://dev.truora.com/digital-identity/get_results/)
-- **Base URL:** `https://api.identity.truora.com`
+#### Security (4)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Digital Identity
-- WhatsApp
-- Onboarding
+- [Truora Authentication](https://apis.io/security/truora/truora-authentication/)
+- [Truora Domain Security](https://apis.io/security/truora/truora-domain-security/)
+- [Truora Trust Center](https://apis.io/security/truora/truora-trust-center/)
+- [Truora Vulnerability Disclosure](https://apis.io/security/truora/truora-vulnerability-disclosure/)
 
-#### Properties
+#### OAuth scopes (1)
 
-- [Documentation](https://dev.truora.com/digital-identity/create_process_link/)
-- [API Reference](https://dev.truora.com/docs/)
-- [OpenAPI](openapi/truora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/truora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+The permissions the API asks for.
 
-### Truora Account API
+- [Truora Scopes](https://apis.io/scopes/truora/truora-scopes/)
 
-Issues and manages Truora API keys — backend JWTs for server-to-server calls and short-lived web integration tokens (`key_type=web`) used to launch Digital Identity processes in the browser or WhatsApp flows.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://dev.truora.com/guides/web_integration_token/](https://dev.truora.com/guides/web_integration_token/)
-- **Base URL:** `https://api.account.truora.com`
+Published plans, tiers and prices.
 
-#### Tags
+- [Truora Plans Pricing](https://apis.io/plans/truora/truora-plans-pricing/)
 
-- Authentication
-- API Keys
-- Tokens
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://dev.truora.com/validators/authentication/)
-- [API Reference](https://dev.truora.com/docs/)
-- [OpenAPI](openapi/truora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/truora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Truora Rate Limits](https://apis.io/rate-limits/truora/truora-rate-limits/)
 
-## Common Properties
+#### FinOps (1)
 
-- [GitHub Organization](https://github.com/truora)
-- [LinkedIn](https://www.linkedin.com/company/truora)
+What the API costs to run, by operation.
+
+- [Truora Finops](https://apis.io/finops/truora/truora-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.truora.com/)
 - [Documentation](https://dev.truora.com/)
-- [Plans](plans/truora-plans-pricing.yml)
-- [Rate Limits](rate-limits/truora-rate-limits.yml)
-- [Fin Ops](finops/truora-finops.yml)
-- [Blog](https://www.truora.com/en/blog)
+- [Getting started](https://dev.truora.com/guides/api_integration_guide/)
+- [API reference](https://dev.truora.com/docs/)
+- [Pricing](https://www.truora.com/en/pricing/)
+- [Sign up](https://account.truora.com/account#/auth/login)
+- [Support](https://www.truora.com/en/contact-sales)
+- [Blog](https://blog.truora.com/es)
+- [Security](https://www.truora.com/es/politica-de-seguridad)
+- [Compliance](https://www.truora.com/en/iso-27001-certification)
+- [Terms of service](https://www.truora.com/en/terms-and-conditions)
+- [Privacy policy](https://www.truora.com/en/integral-privacy-notice)
+- [GitHub](https://github.com/truora)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 55.8** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 57.1 |
+| Contract governance | 18.2 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 68.5 |
+| Access clarity | 55.3 |
+
+**Agent readiness 25.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 45.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/truora/](https://apis.io/providers/truora/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Truora: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/truora/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
